@@ -1,0 +1,117 @@
+# Copyright 2023 NXP
+diff --git a/nanodet/model/head/nanodet_head.py b/nanodet/model/head/nanodet_head.py
+index 8e145d6..7201f9d 100755
+--- a/nanodet/model/head/nanodet_head.py
++++ b/nanodet/model/head/nanodet_head.py
+@@ -156,11 +156,13 @@ class NanoDetHead(GFLHead):
+                 output = torch.cat([cls_score, bbox_pred], dim=1)
+             outputs.append(output.flatten(start_dim=2))
+         outputs = torch.cat(outputs, dim=2).permute(0, 2, 1)
++        return cls_score, bbox_pred
+         return outputs
+ 
+     def _forward_onnx(self, feats):
+         """only used for onnx export"""
+-        outputs = []
++        cls_pred_outs = []
++        reg_pred_outs = []
+         for x, cls_convs, reg_convs, gfl_cls, gfl_reg in zip(
+             feats, self.cls_convs, self.reg_convs, self.gfl_cls, self.gfl_reg
+         ):
+@@ -180,6 +182,8 @@ class NanoDetHead(GFLHead):
+                 reg_pred = gfl_reg(reg_feat)
+ 
+             cls_pred = cls_pred.sigmoid()
+-            out = torch.cat([cls_pred, reg_pred], dim=1)
+-            outputs.append(out.flatten(start_dim=2))
+-        return torch.cat(outputs, dim=2).permute(0, 2, 1)
++            cls_pred_out = cls_pred.flatten(start_dim=2).permute(0, 2, 1)
++            reg_pred_out = reg_pred.flatten(start_dim=2).permute(0, 2, 1)
++            cls_pred_outs.append(cls_pred_out)
++            reg_pred_outs.append(reg_pred_out)
++        return cls_pred, reg_pred
+diff --git a/nanodet/model/head/gfl_head.py b/nanodet/model/head/gfl_head.py
+index ee5409c..74a0277 100644
+--- a/nanodet/model/head/gfl_head.py
++++ b/nanodet/model/head/gfl_head.py
+@@ -201,7 +201,7 @@ class GFLHead(nn.Module):
+             output = torch.cat([cls_score, bbox_pred], dim=1)
+             outputs.append(output.flatten(start_dim=2))
+         outputs = torch.cat(outputs, dim=2).permute(0, 2, 1)
+-        return outputs
++        return cls_score, bbox_pred
+ 
+     def loss(self, preds, gt_meta):
+         cls_scores, bbox_preds = preds.split(
+@@ -601,11 +601,11 @@ class GFLHead(nn.Module):
+ 
+         featmap_sizes = [
+             (math.ceil(input_height / stride), math.ceil(input_width) / stride)
+-            for stride in self.strides
++            for stride in [self.strides[-1]]
+         ]
+         # get grid cells of one image
+         mlvl_center_priors = []
+-        for i, stride in enumerate(self.strides):
++        for i, stride in enumerate([self.strides[-1]]):
+             y, x = self.get_single_level_center_point(
+                 featmap_sizes[i], stride, torch.float32, device
+             )
+@@ -616,7 +616,7 @@ class GFLHead(nn.Module):
+         center_priors = torch.cat(mlvl_center_priors, dim=1)
+         dis_preds = self.distribution_project(reg_preds) * center_priors[..., 2, None]
+         bboxes = distance2bbox(center_priors[..., :2], dis_preds, max_shape=input_shape)
+-        scores = cls_preds.sigmoid()
++        scores = cls_preds
+         result_list = []
+         for i in range(b):
+             # add a dummy background class at the end of all labels
+@@ -705,4 +705,4 @@ class GFLHead(nn.Module):
+             cls_pred = cls_pred.sigmoid()
+             out = torch.cat([cls_pred, reg_pred], dim=1)
+             outputs.append(out.flatten(start_dim=2))
+-        return torch.cat(outputs, dim=2).permute(0, 2, 1)
++        return cls_pred, reg_pred
+diff --git a/tools/export_onnx.py b/tools/export_onnx.py
+index b071ed6..b3895d5 100644
+--- a/tools/export_onnx.py
++++ b/tools/export_onnx.py
+@@ -47,15 +47,17 @@ def main(config, model_path, output_path, input_shape=(320, 320)):
+         torch.randn(1, 3, input_shape[0], input_shape[1])
+     )
+ 
++    model = model.to(memory_format=torch.channels_last)
++
+     torch.onnx.export(
+         model,
+         dummy_input,
+         output_path,
+         verbose=True,
+         keep_initializers_as_inputs=True,
+-        opset_version=11,
++        opset_version=10,
+         input_names=["data"],
+-        output_names=["output"],
++        output_names=["cls_pred", "reg_pred"],
+     )
+     logger.log("finished exporting onnx ")
+
+diff --git a/nanodet/model/arch/one_stage_detector.py b/nanodet/model/arch/one_stage_detector.py
+index 6b0a098..ea7640f 100644
+--- a/nanodet/model/arch/one_stage_detector.py
++++ b/nanodet/model/arch/one_stage_detector.py
+@@ -47,14 +47,11 @@ class OneStageDetector(nn.Module):
+ 
+     def inference(self, meta):
+         with torch.no_grad():
+-            torch.cuda.synchronize()
+             time1 = time.time()
+             preds = self(meta["img"])
+-            torch.cuda.synchronize()
+             time2 = time.time()
+             print("forward time: {:.3f}s".format((time2 - time1)), end=" | ")
+             results = self.head.post_process(preds, meta)
+-            torch.cuda.synchronize()
+             print("decode time: {:.3f}s".format((time.time() - time2)), end=" | ")
+         return results
+
