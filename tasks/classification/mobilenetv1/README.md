@@ -45,7 +45,7 @@ If necessary, a more accurate model can be obtained by modifying the `recipe.sh`
 
 ## Performance
 
-Here are performance figures evaluated on i.MX 8MP and i.MX 93 using BSP LF6.1.1_1.0.0::
+Here are performance figures evaluated on i.MX 8MP and i.MX 93 using BSP LF6.1.1_1.0.0:
 
 Model   | Average latency | Platform        | Accelerator       | Command
 ---     | ---             | ---             | ---               | ---

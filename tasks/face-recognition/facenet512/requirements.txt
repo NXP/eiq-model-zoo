@@ -1,1 +1,2 @@
 deepface==0.0.75
+numpy==1.23.5

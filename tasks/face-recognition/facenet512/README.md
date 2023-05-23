@@ -61,14 +61,16 @@ This model can be used for the following use cases:
 
 ## Performance
 
-Here are performance figures evaluated on i.MX 8MP:
+Here are performance figures evaluated on i.MX 8MP and i.MX 93 using BSP LF6.1.1_1.0.0:
 
-Model   | Average latency | Platform | Accelerator | Command
----     | ---             | ---      | ---         | ---
-Int8    | 322ms           | i.MX 8MP |     CPU     | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=facenet512_uint8.tflite
-Int8    | 10.0ms          | i.MX 8MP |     NPU     | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=facenet512_uint8.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8    | 120.6ms         | i.MX 93  |     CPU     | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=facenet512_uint8.tflite
-Int8    | 10.3ms          | i.MX 93  |     NPU     | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=facenet512_uint8_vela.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
+Model   | Average latency    | Platform | Accelerator       | Command
+---     | ---                | ---      | ---               | ---
+Int8    | 333.32ms           | i.MX 8MP |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=facenet512_uint8.tflite
+Int8    | 97.37ms            | i.MX 8MP |   CPU (4 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=facenet512_uint8.tflite --num_threads=4
+Int8    | 10.01ms            | i.MX 8MP |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=facenet512_uint8.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
+Int8    | 124.45ms           | i.MX 93  |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=facenet512_uint8.tflite
+Int8    | 70.22ms            | i.MX 93  |   CPU (2 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=facenet512_uint8.tflite --num_threads=2
+Int8    | 10.39ms            | i.MX 93  |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=facenet512_uint8_vela.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
 
 ## Download and run
 
