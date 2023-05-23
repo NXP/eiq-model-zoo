@@ -17,7 +17,7 @@ pip install -r requirements.txt
 
 
 # download dataset for calibration
-kaggle competitions download challenges-in-representation-learning-facial-expression-recognition-challenge
+kaggle competitions download -c challenges-in-representation-learning-facial-expression-recognition-challenge
 unzip challenges-in-representation-learning-facial-expression-recognition-challenge.zip
 tar xzvf fer2013.tar.gz
 
@@ -69,7 +69,7 @@ open(OUTPUT_TF_FILE_NAME, 'wb').write(tflite_model)
 "
 
 # install vela
-pip install git+https://github.com/nxp-imx/ethos-u-vela.git@lf-5.15.71-2.2.0
+pip install git+https://github.com/nxp-imx/ethos-u-vela.git@lf-6.1.1-1.0.0
 
 vela --output-dir model_imx93 emotion_uint8_float32.tflite
 

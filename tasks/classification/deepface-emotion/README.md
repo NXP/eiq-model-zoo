@@ -60,14 +60,16 @@ This model can be used for simple emotion recognition applications. Since its ac
 
 ## Performance
 
-Here are performance figures evaluated on i.MX 8MP and i.MX 93:
+Here are performance figures evaluated on i.MX 8MP and i.MX 93 using BSP LF6.1.1_1.0.0:
 
-Model   | Average latency | Platform    | Accelerator | Command
----     | ---             | ---         | ---         | ---
-Int8    | 8.63ms          | i.MX 8MP    |    CPU      | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=emotion_uint8_float32.tflite
-Int8    | 2.03ms          | i.MX 8MP    |    NPU      | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=emotion_uint8_float32.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8    | 4.29ms          | i.MX 93     |    CPU      | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=emotion_uint8_float32.tflite
-Int8    | 0.60ms          | i.MX 93     |    NPU      | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=emotion_uint8_float32_vela.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
+Model   | Average latency | Platform    | Accelerator       | Command
+---     | ---             | ---         | ---               | ---
+Int8    | 9.05ms          | i.MX 8MP    |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=emotion_uint8_float32.tflite --num_runs=50
+Int8    | 3.12ms          | i.MX 8MP    |   CPU (4 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=emotion_uint8_float32.tflite --num_runs=50 --num_threads=4
+Int8    | 2.02ms          | i.MX 8MP    |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=emotion_uint8_float32.tflite --num_runs=50 --external_delegate_path=/usr/lib/libvx_delegate.so
+Int8    | 4.21ms          | i.MX 93     |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=emotion_uint8_float32.tflite --num_runs=50
+Int8    | 2.74ms          | i.MX 93     |   CPU (2 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=emotion_uint8_float32.tflite --num_runs=50 --num_threads=2
+Int8    | 0.61ms          | i.MX 93     |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=emotion_uint8_float32_vela.tflite --num_runs=50 --external_delegate_path=/usr/lib/libethosu_delegate.so
 
 ## Download and run
 
