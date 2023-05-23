@@ -28,7 +28,7 @@ AUC is defined as an area under the [ROC](https://en.wikipedia.org/wiki/Receiver
 
 Model name         | Architecture | Backbone              | Training Dataset | Acc FP32 | Acc INT8 | Input size | OPS    | MParams    | FP32 Size    | INT8 Size |  Compatibility
 ---                | ---          |     ---               | ---              | ---      | ---      | ---        |  ---    | ---        |  ---         |    ---    | ---
-[FaceNet512](./facenet512/README.md)[3] | FaceNet[3]      | Inception-Resnet-V2[2]  | LFW[1]       | 0.975 (LFWpairsTest)   | 0.972 (LFWpairsTest)  | 160x160   |  2.84G   | 23M   |  91M      |  24M    | i.MX 8M Plus, i.MX 93
+[FaceNet512](./facenet512/README.md) [3] | FaceNet[3]      | Inception-Resnet-V2[2]  | LFW[1]       | 0.975 (LFWpairsTest)   | 0.972 (LFWpairsTest)  | 160x160   |  2.84G   | 23M   |  91M      |  24M    | i.MX 8M Plus, i.MX 93
 
 ## References
 

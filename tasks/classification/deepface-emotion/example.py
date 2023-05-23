@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+# SPDX-License-Identifier: MIT
 # Copyright 2022-2023 NXP
 
 import cv2

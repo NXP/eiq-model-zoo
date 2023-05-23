@@ -2,7 +2,7 @@
 
 > A collection of machine learning models for computer vision applications, optimized for NXP MCUs and MPUs.
 
-## Description 
+## Description
 
 The NXP eIQ® Vision Model Zoo offers pre-trained models for a variety of domains and tasks that are ready to be deployed on supported products.
 
@@ -19,10 +19,9 @@ The list of currently supported platforms can be found in [the products folder](
 
 ## NXP eIQ® Vision Model Zoo layout
 
-The NXP eIQ® Vision Model Zoo is structured in the following way: Main Page -> Task -> Model. 
+The NXP eIQ® Vision Model Zoo is structured in the following way: Main Page -> Task -> Model.
 
 Multiple models may be proposed for the same task. Each model has its own information page.
-
 
 ## List of tasks
 
@@ -34,7 +33,6 @@ Task | Description | Input Type | Output Type | Example
 [Image Classification](./tasks/classification/) | Image Classification is a fundamental task that attempts to comprehend an entire image as a whole. <br> The goal is to classify the image by assigning it to a specific label. <br> Typically, Image Classification refers to images in which only one object appears and is analyzed. | Image | Label |  <img src="./tasks/classification/classification_demo.webp"  width="200">
 [Object Detection](./tasks/object-detection/) | Object detection is the task of detecting instances of objects of a certain class within an image. <br> A bounding box and a class label are found for each detected object.  | Image | Bounding Boxes + Labels | <img src="./tasks/object-detection/detection_demo.webp"  width="200">
 [Face Recognition](./tasks/face-recognition/) | Face recognition is the task of matching an input face image to a databases of known faces. <br> A face feature vector is regressed by the model and compared to the known feature vectors. | Image | Face feature vector | <img src="./tasks/face-recognition/face_demo.webp"  width="200">
-
 
 ## Legal information
 

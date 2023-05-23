@@ -33,17 +33,17 @@ The int8 model has been tested on i.MX 8MP using benchmark-model and i.MX RT 117
 
 ## Training and evaluation
 
-The model has been trained and evaluated on the [COCO dataset](https://cocodataset.org/)[1], which features 80 classes. 
-It achieved a score of 13.5mAP on the test set, according to [the source of the model](https://github.com/RangiLyu/nanodet#model-zoo). 
+The model has been trained and evaluated on the [COCO dataset](https://cocodataset.org/) [1], which features 80 classes.
+It achieved a score of 13.5mAP on the test set, according to [the source of the model](https://github.com/RangiLyu/nanodet#model-zoo).
 However, since we only use the largest stride of the model, the actual final accuracy is much lower.
-The performance of the quantized model has been evaluated using the `evaluate.py` script. 
+The performance of the quantized model has been evaluated using the `evaluate.py` script.
 The model achieves 4.3mAP. However, it still achieves 9.4AP on large objects, thus, this model is functional for basic object detection use cases.
 
 ## Conversion/Quantization
 
 The original model is converted from PyTorch to TensorFlow, and then to TensorFlow Lite.
 
-The conversion script performs this conversion and outputs the int8 quantized model. 
+The conversion script performs this conversion and outputs the int8 quantized model.
 100 random images from the COCO 2017 validation dataset are used as calibration for the quantization.
 
 ## Use case and limitations
@@ -57,9 +57,9 @@ Here are performance figures evaluated on i.MX 8M Plus, i.MX RT1170 and i.MX RT1
 
 Model   | Average latency | Platform    | Accelerator | Command
 ---     | ---             | ---         | ---         | ---
-Int8    | 89.4ms          | i.MX 8M Plus|   CPU       | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=nanodet_m_0.5x.tflite 
+Int8    | 89.4ms          | i.MX 8M Plus|   CPU       | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=nanodet_m_0.5x.tflite
 Int8    | 11.9ms          | i.MX 8M Plus|   NPU       | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=nanodet_m_0.5x.tflite  --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8    | 78.2ms          | i.MX 93     |   CPU       | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=nanodet_m_0.5x.tflite 
+Int8    | 78.2ms          | i.MX 93     |   CPU       | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=nanodet_m_0.5x.tflite
 Int8    | 615ms           | i.MX RT1170 |   CPU       | Used with TensorFlow Lite micro
 Int8    | 771ms           | i.MX RT1050 |   CPU       | Used with TensorFlow Lite micro
 

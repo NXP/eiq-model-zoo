@@ -1,6 +1,6 @@
 # Image classification
 
-Image classification is the task of assigning a single class (or label) to an input image. 
+Image classification is the task of assigning a single class (or label) to an input image.
 
 ![classification demo](./classification_demo.webp)
 
@@ -14,7 +14,7 @@ The [ImageNet](https://www.image-net.org/) dataset [2] contains 14,197,122 annot
 
 ### Facial Expression Recognition Challenge (FER2013)
 
-[FER2013](https://www.kaggle.com/datasets/msambare/fer2013)[1] is a dataset for face expression classification.
+[FER2013](https://www.kaggle.com/datasets/msambare/fer2013) [1] is a dataset for face expression classification.
 
 The data consists of 48x48 pixel grayscale images of faces. The faces have been automatically registered so that the face is more or less centered and occupies about the same amount of space in each image. The task is to categorize each face based on the emotion shown in the facial expression in to one of seven categories (0=Angry, 1=Disgust, 2=Fear, 3=Happy, 4=Sad, 5=Surprise, 6=Neutral).
 
@@ -36,4 +36,5 @@ Model name                                       | Architecture | Backbone      
 ## References
 
 [1] Goodfellow, Ian J., et al. "Challenges in representation learning: A report on three machine learning contests." International conference on neural information processing. Springer, Berlin, Heidelberg, 2013.
+
 [2] Deng, Jia, et al. "Imagenet: A large-scale hierarchical image database." 2009 IEEE conference on computer vision and pattern recognition. Ieee, 2009.

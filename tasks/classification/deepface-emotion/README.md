@@ -2,7 +2,7 @@
 
 ## Introduction
 
-[Deepface-emotion](https://github.com/serengil/deepface) is a simple convolutional neural network for classification of face emotions. 
+[Deepface-emotion](https://github.com/serengil/deepface) is a simple Convolutional Neural Network (CNN) for classification of face emotions.
 We use the weights from the implementation found in [DeepFace](https://github.com/serengil/deepface/).
 
 NB: This is not a face detection model. The faces have to be detected in the image and cropped before feeding them to Deepface-emotion.
@@ -51,7 +51,7 @@ The evaluation script used to create the confusion matrix is `evaluate.py`.
 
 The original model is directly converted from Keras to TensorFlow Lite.
 
-The conversion script performs this conversion and outputs the float32 model and int8 quantized model. 
+The conversion script performs this conversion and outputs the float32 model and int8 quantized model.
 100 random images from the training dataset are used as calibration for the quantization.
 
 ## Use case and limitations
@@ -79,7 +79,7 @@ To create the TensorFlow Lite model fully quantized in int8 with int8 input and 
 
 IMPORTANT: Before running `recipe.sh`, an account has to be created on [Kaggle](http://kaggle.com) in order to download the quantization calibration and evaluation dataset.
 When the account is created, go to your Account page, create an API key and download it. Open the generated JSON file and write the contents in the `KAGGLE_USERNAME` and `KAGGLE_KEY` variables in the code snippet above.
-Finally, accept the competition rules https://www.kaggle.com/competitions/challenges-in-representation-learning-facial-expression-recognition-challenge/data to enable the data download.
+Finally, accept the competition rules [Challenges in Representation Learning: Facial Expression Recognition Challenge](https://www.kaggle.com/competitions/challenges-in-representation-learning-facial-expression-recognition-challenge/data) to enable the data download.
 
 The TensorFlow Lite model file for i.MX 8M Plus is `emotion_uint8_float32.tflite`. The file for i.MX 93 is output in the `model_imx93` directory.
 

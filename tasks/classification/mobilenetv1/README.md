@@ -2,7 +2,7 @@
 
 ## Introduction
 
-[MobileNet V1](https://github.com/serengil/deepface)[1] is a family of lightweight convolutional neural networks for image classification. 
+[MobileNet V1](https://github.com/serengil/deepface) [1] is a family of lightweight convolutional neural networks for image classification.
 We use the weights from the implementation found in [TensorFlow Model Garden](https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet_v1.md).
 
 Our base recipe script offers the smallest model (width multiplier 0.25, input resolution 128x128) by default.
@@ -26,8 +26,7 @@ Initial release of quantized int8 model.
 
 ## Tested configurations
 
-The quantized int8 models have been tested on i.MX 8M Plus and i.MX 93 using benchmark-model (see [i.MX Machine Learning User Guide](https://www.nxp.com/docs/en/user-guide/IMX-MACHINE-LEARNING-UG.pdf)), and 
-on i.MX RT1170 and i.MX RT1050 using TensorFlow Lite Micro.
+The quantized int8 models have been tested on i.MX 8M Plus and i.MX 93 using benchmark-model (see [i.MX Machine Learning User Guide](https://www.nxp.com/docs/en/user-guide/IMX-MACHINE-LEARNING-UG.pdf)), and on i.MX RT1170 and i.MX RT1050 using TensorFlow Lite Micro.
 
 ## Training and evaluation
 
@@ -37,7 +36,7 @@ The original training procedure is detailed [here](https://github.com/tensorflow
 
 ## Conversion/Quantization
 
-The model is downloaded in an archive which contains the quantized model and original .pb TensorFlow model. See [the source of the model](https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet_v1.md) for information on the quantization procedure that was used.
+The model is downloaded in an archive which contains the quantized model and original (*.pb) TensorFlow model. See [the source of the model](https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet_v1.md) for information on the quantization procedure that was used.
 
 ## Use case and limitations
 
@@ -50,9 +49,9 @@ Here are performance figures evaluated on i.MX 8MP and i.MX 93:
 
 Model   | Average latency | Platform        | Accelerator | Command
 ---     | ---             | ---             | ---         | ---
-Int8    | 6.38ms          | i.MX 8M Plus    |    CPU      | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=mobilenet_v1_0.25_128_quant.tflite 
+Int8    | 6.38ms          | i.MX 8M Plus    |    CPU      | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=mobilenet_v1_0.25_128_quant.tflite
 Int8    | 0.80ms          | i.MX 8M Plus    |    NPU      | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=mobilenet_v1_0.25_128_quant.tflite  --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8    | 3.64ms          | i.MX 93         |    CPU      | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=mobilenet_v1_0.25_128_quant.tflite 
+Int8    | 3.64ms          | i.MX 93         |    CPU      | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=mobilenet_v1_0.25_128_quant.tflite
 Int8    | 0.368ms         | i.MX 93         |    NPU      | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=mobilenet_v1_0.25_128_quant_vela.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
 Int8    | 47ms            | i.MX RT1170     |    CPU      | Tested with TensorFlow Lite Micro
 Int8    | 70ms            | i.MX RT1050     |    CPU      | Tested with TensorFlow Lite Micro
