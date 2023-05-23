@@ -25,8 +25,9 @@ rm -rf tmp
 python3 -m venv env
 source ./env/bin/activate
 pip install --upgrade pip
+pip install -r requirements.txt
 
-pip install git+https://github.com/nxp-imx/ethos-u-vela.git@lf-5.15.71-2.2.0
+pip install git+https://github.com/nxp-imx/ethos-u-vela.git@lf-6.1.1-1.0.0
 
 vela --output-dir model_imx93 mobilenet_v1_${MODEL_SCALE}_${MODEL_INPUT_RESOLUTION}_quant.tflite
 

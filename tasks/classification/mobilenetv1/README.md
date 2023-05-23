@@ -45,16 +45,18 @@ If necessary, a more accurate model can be obtained by modifying the `recipe.sh`
 
 ## Performance
 
-Here are performance figures evaluated on i.MX 8MP and i.MX 93:
+Here are performance figures evaluated on i.MX 8MP and i.MX 93 using BSP LF6.1.1_1.0.0::
 
-Model   | Average latency | Platform        | Accelerator | Command
----     | ---             | ---             | ---         | ---
-Int8    | 6.38ms          | i.MX 8M Plus    |    CPU      | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=mobilenet_v1_0.25_128_quant.tflite
-Int8    | 0.80ms          | i.MX 8M Plus    |    NPU      | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=mobilenet_v1_0.25_128_quant.tflite  --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8    | 3.64ms          | i.MX 93         |    CPU      | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=mobilenet_v1_0.25_128_quant.tflite
-Int8    | 0.368ms         | i.MX 93         |    NPU      | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=mobilenet_v1_0.25_128_quant_vela.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
-Int8    | 47ms            | i.MX RT1170     |    CPU      | Tested with TensorFlow Lite Micro
-Int8    | 70ms            | i.MX RT1050     |    CPU      | Tested with TensorFlow Lite Micro
+Model   | Average latency | Platform        | Accelerator       | Command
+---     | ---             | ---             | ---               | ---
+Int8    | 6.53ms          | i.MX 8M Plus    |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=mobilenet_v1_0.25_128_quant.tflite
+Int8    | 2.44ms          | i.MX 8M Plus    |   CPU (4 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=mobilenet_v1_0.25_128_quant.tflite --num_threads=4
+Int8    | 0.84ms          | i.MX 8M Plus    |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=mobilenet_v1_0.25_128_quant.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
+Int8    | 3.63ms          | i.MX 93         |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=mobilenet_v1_0.25_128_quant.tflite
+Int8    | 2.41ms          | i.MX 93         |   CPU (2 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=mobilenet_v1_0.25_128_quant.tflite --num_threads=2
+Int8    | 0.37ms          | i.MX 93         |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=mobilenet_v1_0.25_128_quant_vela.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
+Int8    | 47ms            | i.MX RT1170     |   CPU             | Tested with TensorFlow Lite Micro
+Int8    | 70ms            | i.MX RT1050     |   CPU             | Tested with TensorFlow Lite Micro
 
 ## Download and run
 
