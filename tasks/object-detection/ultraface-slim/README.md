@@ -38,8 +38,7 @@ The model has been trained and evaluated on the Widerface dataset. It achieved s
 
 The original model is converted from PyTorch to TensorFlow, and then to TensorFlow Lite.
 
-The conversion script performs this conversion and outputs the float32 model and int8 quantized model. 
-100 random images from the Widerface test dataset are used as calibration for the quantization.
+The conversion script performs this conversion and outputs the float32 model and int8 quantized model. 100 random images from the Widerface test dataset are used as calibration for the quantization.
 
 ## Use case and limitations
 
@@ -47,16 +46,18 @@ This model can be used for very fast face detection on 320x240 pixel images.
 
 ## Performance
 
-Here are performance figures evaluated on supported products:
+Here are performance figures evaluated on supported products (BSP LF6.1.1_1.0.0):
 
 Model   | Average latency | Platform     | Accelerator | Command
 ---     | ---             | ---          | ---         | ---
-Int8    | 51.6ms          | i.MX 8MP     |     CPU     | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=ultraface_slim_uint8_float32.tflite
-Int8    | 5.32ms          | i.MX 8MP     |     NPU     | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=ultraface_slim_uint8_float32.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8    | 39.7ms          | i.MX 93      |     CPU     | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=ultraface_slim_uint8_float32.tflite
-Int8    | 6.8ms           | i.MX 93      |     NPU     | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=ultraface_slim_uint8_float32_vela.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
-Int8    | 566ms           | i.MX RT 1170 |     CPU     | Used with TFLite micro
-Int8    | 1788ms          | i.MX RT 1050 |     CPU     | Used with TFLite micro
+Int8    | 54.44ms         | i.MX 8MP     |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=ultraface_slim_uint8_float32.tflite
+Int8    | 29.34ms         | i.MX 8MP     |   CPU (4 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=ultraface_slim_uint8_float32.tflite --num_threads=4
+Int8    | 5.23ms          | i.MX 8MP     |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=ultraface_slim_uint8_float32.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
+Int8    | 39.38ms         | i.MX 93      |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=ultraface_slim_uint8_float32.tflite
+Int8    | 32.50ms         | i.MX 93      |   CPU (2 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=ultraface_slim_uint8_float32.tflite --num_threads=2
+Int8    | 6.66ms          | i.MX 93      |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=ultraface_slim_uint8_float32_vela.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
+Int8    | 566ms           | i.MX RT 1170 |   CPU             | Used with TFLite micro
+Int8    | 1788ms          | i.MX RT 1050 |   CPU             | Used with TFLite micro
 
 ## Download and run
 
@@ -64,9 +65,7 @@ To create the TensorFlow Lite model fully quantized in int8 with int8 input and 
 
     bash recipe.sh
 
-The TensorFlow Lite model file for i.MX 8M Plus and i.MX RT 1170 is `ultraface_slim_uint8_float32.tflite`. 
-The file for i.MX RT 1170 and 1050 is `ultraface_slim_int8.tflite`.
-The file for i.MX 93 is in the `model_imx93` directory.
+The TensorFlow Lite model file for i.MX 8M Plus and i.MX RT 1170 is `ultraface_slim_uint8_float32.tflite`. The file for i.MX RT 1170 and 1050 is `ultraface_slim_int8.tflite`. The file for i.MX 93 is in the `model_imx93` directory.
 
 An example of how to use the model is in `example.py`.
 
