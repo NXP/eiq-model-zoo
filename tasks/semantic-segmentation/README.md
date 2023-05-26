@@ -22,9 +22,11 @@ IoU is the area of overlap between the predicted segmentation and the ground tru
 
 ## Model List
 
-Model name                                   | Architecture | Backbone              | Training Dataset | mIoU FP32    | mIoU INT8 | Input size | OPS    | Params  | FP32 Size    | INT8 Size |  Compatibility
----                                          | ---          |     ---               | ---              | ---          | ---      | ---         |  ---   | ---     |  ---         |    ---    | ---
-[DeepLabV3](./deeplabv3/README.md)           | DeepLabV3[2] | MobileNetV2[3]        | PASCAL VOC 2012  | 0.7019 (val) | TODO     | 513x513     |  1.76B | TODO    |  7.6MB       |  983KB    | i.MX 8M Plus
+Model name                                                 | Architecture | Backbone         | Training Dataset | FP32/FP16 accuracy    | INT8 accuracy      | Input size       | OPS      | Params | FP32 Size | INT8 Size  |  Compatibility
+---                                                        | ---          |     ---          | ---              | ---                   | ---                | ---              |  ---     | ---    |  ---      |    ---     | ---
+[DeepLabV3](./deeplabv3/README.md)                         | DeepLabV3[2] | MobileNetV2[3]   | PASCAL VOC 2012  | 0.7019 (mIoU val)     | TODO               | 513x513          |  1.76B   | TODO   |  7.6MB    |  983KB     | i.MX 8M Plus
+[Selfie Segmenter General](./selfie-segmenter/README.md)   | CNN          | MobileNetV3-like | Proprietary      | 96.48 +/- 0.84% (IoU) | 0.970 (correctness)| [1, 256, 256, 3] |  116.3 M | N/A    |  244 KB   |  216 KB    | i.MX 8M Plus, i.MX 93
+[Selfie Segmenter Landscape](./selfie-segmenter/README.md) | CNN          | MobileNetV3-like | Proprietary      | 95.99 +/- 0.87% (IoU) | 0.979 (correctness)| [1, 144, 256, 3] |  65.5 M  | N/A    |  244 KB   |  216 KB    | i.MX 8M Plus, i.MX 93
 
 ## References
 
