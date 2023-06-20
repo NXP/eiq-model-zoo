@@ -13,6 +13,7 @@ Model                                                                   | Task  
 [NanoDet-M](../tasks/object-detection/nanodet-m/README.md)              | Object detection      | COCO
 [Ultraface-Slim](../tasks/object-detection/ultraface-slim/README.md)    | Object detection      | Widerface
 [MobileNet V1](../tasks/classification/mobilenetv1/README.md)           | Image classification  | ImageNet
+[DeepLabV3](../tasks/semantic-segmentation/deeplabv3/README.md)         | Semantic segmentation | PASCAL VOC 2012
 
 ## i.MX 93
 
