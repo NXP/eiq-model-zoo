@@ -14,6 +14,7 @@ Model                                                                   | Task  
 [Ultraface-Slim](../tasks/object-detection/ultraface-slim/README.md)    | Object detection      | Widerface
 [MobileNet V1](../tasks/classification/mobilenetv1/README.md)           | Image classification  | ImageNet
 [DeepLabV3](../tasks/semantic-segmentation/deeplabv3/README.md)         | Semantic segmentation | PASCAL VOC 2012
+[MoveNet](../tasks/pose-estimation/movenet/README.md)                   | Pose estimation       | COCO + Active
 
 ## i.MX 93
 
@@ -23,6 +24,7 @@ Model                                                                   | Task  
 [Facenet512](../tasks/face-recognition/facenet512/README.md)            | Face recognition      | LFW
 [Ultraface-Slim](../tasks/object-detection/ultraface-slim/README.md)    | Object detection      | Widerface
 [MobileNet V1](../tasks/classification/mobilenetv1/README.md)           | Image classification  | ImageNet
+[MoveNet](../tasks/pose-estimation/movenet/README.md)                   | Pose estimation       | COCO + Active
 
 ## i.MX RT1170
 

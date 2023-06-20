@@ -34,6 +34,7 @@ Task | Description | Input Type | Output Type | Example
 [Object Detection](./tasks/object-detection/) | Object detection is the task of detecting instances of objects of a certain class within an image. <br> A bounding box and a class label are found for each detected object.  | Image | Bounding Boxes + Labels | <img src="./tasks/object-detection/detection_demo.webp"  width="200">
 [Face Recognition](./tasks/face-recognition/) | Face recognition is the task of matching an input face image to a databases of known faces. <br> A face feature vector is regressed by the model and compared to the known feature vectors. | Image | Face feature vector | <img src="./tasks/face-recognition/face_demo.webp"  width="200">
 [Semantic Segmentation](./tasks/semantic-segmentation/) | Semantic segmentation is the task of assigning a class to each pixel of an input image. It does not separate the different instances of objects. | Image | Segmentation map | <img src="./tasks/semantic-segmentation/segmentation_demo.webp" width="200">
+[Pose Estimation](./tasks/pose-estimation/) | The goal of pose estimation is to detect the position and orientation of a person or object. In Human Pose Estimation, this is usually done with specific keypoints such as hands, head, legs, etc. | Image | Keypoint positions | <img src="./tasks/pose-estimation/pose_demo.webp"  width="200">
 
 ## Legal information
 
