@@ -32,6 +32,7 @@ Model name                                   | Architecture | Backbone          
 ---                                          | ---          |     ---               | ---              | ---      | ---      | ---        |  ---    | ---        |  ---         |    ---    | ---
 [UltraFace-slim](./ultraface-slim/README.md) | SSD[3]       | Custom SqueezeNet[5]  | WIDER FACE       | 0.77/0.671/0.395 (easy/medium/hard)   | TODO     | 320x240    |  168M | 265K    |  1.04MB      |  300KB    | i.MX 8M Plus, i.MX 93, RT1170
 [NanoDet-M](./nanodet-m/README.md)           | FCOS[6]      | ShuffleNetV2[7] 0.5x  | COCO[1]          | <0.13    | 0.04     | 320x320    | 158M   | 204K      |     1.6MB    |  364KB    | i.MX 8MP, RT1170
+[YOLOv4-tiny](./yolov4tiny/README.md)        | YOLOv4[8]    | CSPDarkNet53[8]       | COCO[1]          | 0.40 (mAP@0.5IoU) | 0.33 (mAP@0.5IoU)    | 416x416    | 6.9G   | 6.05M     |     24MB     |  5.9MB    | i.MX 8M Plus, i.MX 93
 
 ## References
 
@@ -48,3 +49,5 @@ Model name                                   | Architecture | Backbone          
 [6] Tian, Zhi, et al. "Fcos: Fully convolutional one-stage object detection." Proceedings of the IEEE/CVF international conference on computer vision. 2019.
 
 [7] Ma, Ningning, et al. "Shufflenet v2: Practical guidelines for efficient cnn architecture design." Proceedings of the European conference on computer vision (ECCV). 2018.
+
+[8] Bochkovskiy, Alexey, Chien-Yao Wang, and Hong-Yuan Mark Liao. "Yolov4: Optimal speed and accuracy of object detection." arXiv preprint arXiv:2004.10934 (2020).
