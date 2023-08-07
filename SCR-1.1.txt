@@ -2,7 +2,7 @@
 NXP Software Content Register
 
 Package:                    NXP eIQ® Vision Model Zoo
-Version:                    1.0
+Version:                    1.1
 
 Location:                   https://github.com/nxp/nxp-vision-model-zoo
 Type of content:            Source code, images
