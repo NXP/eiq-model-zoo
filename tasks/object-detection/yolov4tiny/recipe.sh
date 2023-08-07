@@ -25,7 +25,7 @@ python3 export_model.py --weights_path=./ --output_path=./ --images_path=val2017
 
 # install vela
 pip install numpy==1.20
-pip install git+https://github.com/nxp-imx/ethos-u-vela.git@lf-6.1.1-1.0.0
+pip install git+https://github.com/nxp-imx/ethos-u-vela.git@lf-6.1.22-2.0.0
 
 vela --output-dir model_imx93 yolov4-tiny_416_quant.tflite
 

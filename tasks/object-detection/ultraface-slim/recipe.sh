@@ -84,7 +84,7 @@ if __name__ == '__main__':
 "
 
 # install vela
-pip install git+https://github.com/nxp-imx/ethos-u-vela.git@lf-6.1.1-1.0.0
+pip install git+https://github.com/nxp-imx/ethos-u-vela.git@lf-6.1.22-2.0.0
 
 vela --output-dir ../model_imx93 ../ultraface_slim_uint8_float32.tflite
 )

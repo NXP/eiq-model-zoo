@@ -125,7 +125,7 @@ with open('../${MODEL}_int8.tflite', 'wb') as f:
     "
         
     # install vela
-    pip install git+https://github.com/nxp-imx/ethos-u-vela.git@lf-6.1.1-1.0.0
+    pip install git+https://github.com/nxp-imx/ethos-u-vela.git@lf-6.1.22-2.0.0
     vela --output-dir ../model_imx93 ../${MODEL}_int8.tflite
     deactivate
 )

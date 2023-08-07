@@ -69,7 +69,7 @@ open(OUTPUT_TF_FILE_NAME, 'wb').write(tflite_model)
 "
 
 # install vela
-pip install git+https://github.com/nxp-imx/ethos-u-vela.git@lf-6.1.1-1.0.0
+pip install git+https://github.com/nxp-imx/ethos-u-vela.git@lf-6.1.22-2.0.0
 
 vela --output-dir model_imx93 emotion_uint8_float32.tflite
 
