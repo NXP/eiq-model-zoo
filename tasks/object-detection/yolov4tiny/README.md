@@ -25,7 +25,7 @@ Target platform | MPUs
 
 ## Version and changelog
 
-Initial release of quantized int8 model.
+Initial release of quantized int8 and float32 models.
 
 ## Tested configurations
 
@@ -43,7 +43,7 @@ Instructions to re-train the network can be found [in the original repository](h
 
 The original model is converted from the DarkNet framework to TensorFlow Lite.
 
-The `export_model.py` conversion script performs this conversion and outputs the int8 quantized model.
+The `export_model.py` conversion script performs this conversion and outputs the int8 quantized model and float32 model.
 100 random images from the COCO 2017 validation dataset are used as calibration for the quantization.
 
 ## Use case and limitations
@@ -69,11 +69,13 @@ Int8    | 21.1ms           | i.MX 93      |   NPU             | /usr/bin/tensorf
 
 ## Download and run
 
-To create the TensorFlow Lite model fully quantized in int8 with int8 input and float32 output, run:
+To create the TensorFlow Lite model fully quantized in int8 with int8 input and float32 output and the float32 model, run:
 
     bash recipe.sh
 
 The TensorFlow Lite model file for i.MX 8M Plus and i.MX 93 CPU is `yolov4-tiny_416_quant.tflite`. The model for i.MX 93 NPU will be in `model_imx93`.
+
+The 32-bit floating point model is `yolov4-tiny_416_float32.tflite`.
 
 An example of how to use the model is in `example.py`.
 

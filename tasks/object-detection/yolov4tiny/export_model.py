@@ -437,3 +437,13 @@ converter.inference_output_type = tf.float32
 tflite_model = converter.convert()
 with open(tflite_quant, 'wb') as f:
     f.write(tflite_model)
+
+
+# float32 model
+converter = tf.lite.TFLiteConverter.from_keras_model(model)
+
+tflite_float = args.output_path + '/yolov4-tiny_416_float32.tflite'
+
+tflite_model = converter.convert()
+with open(tflite_float, 'wb') as f:
+    f.write(tflite_model)
