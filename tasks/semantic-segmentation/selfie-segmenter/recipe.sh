@@ -44,7 +44,7 @@ mkdir tmp
     wget https://github.com/PINTO0309/tflite2tensorflow/raw/main/schema/schema.fbs
     
     # MediaPipe *.tflite -> TensorFlow (*.pb)
-    python3 -m venv env_tflite2tf
+    python3.8 -m venv env_tflite2tf
     source ./env_tflite2tf/bin/activate
     pip install --upgrade pip
     pip install pandas
@@ -79,14 +79,14 @@ mkdir tmp
 (
     # TensorFlow (*.pb) -> TFLite (*.tflite)
     cd tmp
-    python3 -m venv env_tf
+    python3.8 -m venv env_tf
     source ./env_tf/bin/activate
     
     pip install --upgrade pip
     pip install wheel
     pip install -r ../requirements_tf.txt
     
-    python -c "
+    python3.8 -c "
 import random
 import numpy as np
 import tensorflow as tf

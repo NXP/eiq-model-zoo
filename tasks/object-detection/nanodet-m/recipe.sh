@@ -10,7 +10,7 @@ git checkout 0f4d8f11443
 git apply ../nanodet.patch
 
 # pytorch -> onnx
-python3 -m venv env_pt2onnx
+python3.8 -m venv env_pt2onnx
 source ./env_pt2onnx/bin/activate
 
 pip install --upgrade pip
@@ -22,13 +22,13 @@ gdown 1rMHkD30jacjRpslmQja5jls86xd0YssR
 
 pip install -e .
 
-python tools/export_onnx.py --cfg_path config/legacy_v0.x_configs/nanodet-m-0.5x.yml --model_path ./nanodet_m_0.5x.ckpt --out_path nanodet_m_0.5x.onnx
+python3.8 tools/export_onnx.py --cfg_path config/legacy_v0.x_configs/nanodet-m-0.5x.yml --model_path ./nanodet_m_0.5x.ckpt --out_path nanodet_m_0.5x.onnx
 
 deactivate
 
 
 # onnx -> openvino
-python3 -m venv env_onnx2ov
+python3.8 -m venv env_onnx2ov
 source ./env_onnx2ov/bin/activate
 
 pip install --upgrade pip
@@ -40,7 +40,7 @@ mo --input_model nanodet_m_0.5x.onnx
 deactivate
 
 # openvino -> tensorflow
-python3 -m venv env_ov2tf
+python3.8 -m venv env_ov2tf
 source ./env_ov2tf/bin/activate
 
 pip install --upgrade pip
@@ -52,7 +52,7 @@ openvino2tensorflow --model_path nanodet_m_0.5x.xml --model_output_path nanodet_
 deactivate
 
 # tensorflow -> tflite
-python3 -m venv env_tf
+python3.8 -m venv env_tf
 source ./env_tf/bin/activate
 
 pip install --upgrade pip
@@ -62,7 +62,7 @@ pip install -r ../requirements_tf.txt
 wget http://images.cocodataset.org/zips/val2017.zip
 unzip val2017.zip
 
-python -c "
+python3.8 -c "
 import tensorflow as tf
 import numpy as np
 

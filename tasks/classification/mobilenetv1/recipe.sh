@@ -22,7 +22,7 @@ cp  tmp/mobilenet_v1_${MODEL_SCALE}_${MODEL_INPUT_RESOLUTION}_quant.tflite .
 rm -rf tmp
 
 ## install vela and convert model for i.MX 93
-python3 -m venv env
+python3.8 -m venv env
 source ./env/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt

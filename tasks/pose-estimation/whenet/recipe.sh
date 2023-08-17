@@ -7,14 +7,14 @@ set -e
 
 wget https://github.com/Ascend-Research/HeadPoseEstimation-WHENet/raw/a0d7bdfb5e2ac97ae6b0ae3eef79fdcf4075ab82/WHENet.h5 -O WHENet.h5
 
-python3 -m venv env
+python3.8 -m venv env
 source ./env/bin/activate
 pip install --upgrade pip
 
 pip install -r requirements.txt
 
 # Convert model to tflite
-python -c "
+python3.8 -c "
 import cv2, numpy as np, tensorflow as tf, glob
 
 import numpy as np

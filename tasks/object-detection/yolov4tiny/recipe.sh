@@ -10,7 +10,7 @@ wget https://raw.githubusercontent.com/amikelive/coco-labels/master/coco-labels-
 
 
 # tensorflow -> tflite
-python3 -m venv env
+python3.8 -m venv env
 source ./env/bin/activate
 
 pip install --upgrade pip
@@ -21,7 +21,7 @@ wget http://images.cocodataset.org/zips/val2017.zip
 unzip val2017.zip
 
 # convert model from darknet to tensorflow lite
-python3 export_model.py --weights_path=./ --output_path=./ --images_path=val2017
+python3.8 export_model.py --weights_path=./ --output_path=./ --images_path=val2017
 
 # install vela
 pip install numpy==1.20

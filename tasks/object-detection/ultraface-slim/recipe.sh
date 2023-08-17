@@ -16,7 +16,7 @@ unzip WIDER_test.zip
 rm WIDER_test.zip
 
 # Install requirements in virtual env
-python3 -m venv env
+python3.8 -m venv env
 source ./env/bin/activate
 pip install --upgrade pip
 pip install -r ../requirements_tf.txt
@@ -24,11 +24,11 @@ pip install -r ../requirements_tf.txt
 # Generate tensorflow weights
 (
 cd tf
-python convert_tensorflow.py --net_type slim
+python3.8 convert_tensorflow.py --net_type slim
 )
 
 # Convert model to tflite
-python -c "
+python3.8 -c "
 import cv2, numpy as np, tensorflow as tf, glob, random
 random.seed(1337)
 

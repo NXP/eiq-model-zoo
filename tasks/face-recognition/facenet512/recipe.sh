@@ -3,7 +3,7 @@
 
 set -e
 
-python3 -m venv env
+python3.8 -m venv env
 source ./env/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
@@ -13,7 +13,7 @@ tar xzf lfw.tgz
 
 mkdir -p ~/.deepface/weights
 
-python -c "from deepface.basemodels.Facenet512 import loadModel
+python3.8 -c "from deepface.basemodels.Facenet512 import loadModel
 import tensorflow as tf
 import numpy as np
 import random, glob, cv2

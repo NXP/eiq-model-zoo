@@ -12,7 +12,7 @@ wget https://github.com/nnsuite/testcases/raw/master/DeepLearningModels/tensorfl
 tar xzvf ssdlite_mobilenet_v2_coco_2018_05_09.tar.gz
 
 # tensorflow -> tflite
-python3 -m venv env_tf
+python3.8 -m venv env_tf
 source ./env_tf/bin/activate
 
 pip install --upgrade pip
@@ -24,7 +24,7 @@ pip install Pillow==9.5.0
 wget http://images.cocodataset.org/zips/val2017.zip
 unzip val2017.zip
 
-python -c "
+python3.8 -c "
 import tensorflow as tf
 import numpy as np
 

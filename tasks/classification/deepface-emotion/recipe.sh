@@ -10,7 +10,7 @@ Follow the instructions in README.md to create an API key and add it to KAGGLE_U
       exit 1
 fi
 
-python3 -m venv env
+python3.8 -m venv env
 source ./env/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
@@ -23,7 +23,7 @@ tar xzvf fer2013.tar.gz
 
 mkdir -p ~/.deepface/weights
 
-python -c "from deepface.extendedmodels.Emotion import loadModel
+python3.8 -c "from deepface.extendedmodels.Emotion import loadModel
 import tensorflow as tf
 import numpy as np
 import random, glob, cv2
