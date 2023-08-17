@@ -407,6 +407,8 @@ def representative_dataset():
     for image_file in image_files:
         image_path = os.path.join(image_folder, image_file)
         original_image = im.open(image_path)
+        if original_image.mode != "RGB":
+            continue
         image_data = image_resize(original_image, [h, w])
         img_in = image_data[np.newaxis, ...].astype(np.float32)
         yield [img_in]
