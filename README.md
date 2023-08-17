@@ -36,6 +36,10 @@ Task | Description | Input Type | Output Type | Example
 [Semantic Segmentation](./tasks/semantic-segmentation/) | Semantic segmentation is the task of assigning a class to each pixel of an input image. It does not separate the different instances of objects. <br> The output is a 2D image containing the segments for each class. | Image | Segmentation map | <img src="./tasks/semantic-segmentation/segmentation_demo.webp" width="200">
 [Pose Estimation](./tasks/pose-estimation/) | The goal of pose estimation is to detect the position and orientation of a person or object. In Human Pose Estimation, this is usually done with specific keypoints such as hands, head, legs, etc. | Image | Keypoint positions | <img src="./tasks/pose-estimation/pose_demo.webp"  width="200">
 
+## Requirements
+
+The model creation recipes were tested under Ubuntu 20.04 with Python 3.8.
+
 ## Legal information
 
 Copyright NXP 2023
