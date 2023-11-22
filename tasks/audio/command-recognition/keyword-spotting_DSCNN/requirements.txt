@@ -1,0 +1,4 @@
+tensorflow==2.11.1
+numpy==1.24.4
+librosa==0.10.1
+tensorflow_datasets==4.9.0

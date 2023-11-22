@@ -1,0 +1,5 @@
+tensorflow==2.13.0
+numpy==1.22.0
+matplotlib==3.7.2
+seaborn==0.12.2
+tqdm==4.66.1

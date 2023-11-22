@@ -1,0 +1,17 @@
+-------------------------------------------------------------------------------
+NXP Software Content Register
+
+Package:                    NXP eIQ Model Zoo
+Version:                    1.2
+
+Location:                   https://github.com/NXP/eiq-model-zoo
+Type of content:            Source code, scripts, images
+Outgoing License:           MIT
+License file:               LICENSE
+Description and comments:   Collection of machine learning models optimized for NXP products
+Origin:                     NXP (MIT)
+                            Huawei Technologies Co., Ltd. (BSD-3-Clause)
+                            Public domain dataset labels
+                            Public domain images (Wikimedia)
+
+-------------------------------------------------------------------------------

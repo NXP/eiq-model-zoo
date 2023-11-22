@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Copyright 2023 NXP
+
+set -e
+
+python3.8 -m venv env
+source ./env/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+
+if [ ! -d "eeg-tcnet-master" ]; then
+  wget https://github.com/iis-eth-zurich/eeg-tcnet/archive/refs/heads/master.zip
+
+  unzip master.zip
+  rm master.zip
+fi
+
+if [ ! -d "data" ]; then
+  mkdir data
+  cd data || exit
+  wget http://bnci-horizon-2020.eu/database/data-sets/001-2014/A01T.mat
+  wget http://bnci-horizon-2020.eu/database/data-sets/001-2014/A01E.mat
+
+  cd ..
+fi
+python3.8 prepare_dataset.py --path=data
+
+deactivate
+
+rm -rf env

@@ -1,0 +1,139 @@
+# Copyright 2023 NXP
+diff --git a/tf/backend/utils.py b/tf/backend/utils.py
+index cad741e..49b6851 100644
+--- a/tf/backend/utils.py
++++ b/tf/backend/utils.py
+@@ -8,11 +8,18 @@ import torch
+ def post_processing(reg_list, cls_list, num_classes, image_size, feature_map_wh_list, min_boxes,
+                     center_variance, size_variance,
+                     conf_threshold=0.6, nms_max_output_size=100, nms_iou_threshold=0.3, top_k=100):
+-    reg_list = [tf.keras.layers.Reshape([-1, 4])(reg) for reg in reg_list]
+-    cls_list = [tf.keras.layers.Reshape([-1, num_classes])(cls) for cls in cls_list]
+ 
+-    reg = tf.keras.layers.Concatenate(axis=1)(reg_list)
+-    cls = tf.keras.layers.Concatenate(axis=1)(cls_list)
++    shapes = [512, 128, 48]
++    input_shapes = [(15,20),(8,10),(4,5)]
++
++    for r in reg_list:
++        print(r.shape)
++
++    reg_list = [tf.reshape(reg, shape=(int(shape/4),4)) for reg,shape, input_shape in zip(reg_list, shapes, input_shapes)]
++    cls_list = [tf.reshape(cls, shape=(int(shape/4), num_classes)) for cls,shape, input_shape in zip(cls_list, shapes, input_shapes)]
++
++    reg = tf.keras.layers.Concatenate(axis=0)(reg_list)
++    cls = tf.keras.layers.Concatenate(axis=0)(cls_list)
+ 
+     # post process
+     cls = tf.keras.layers.Softmax(axis=-1)(cls)
+@@ -21,23 +28,6 @@ def post_processing(reg_list, cls_list, num_classes, image_size, feature_map_wh_
+ 
+     result = tf.keras.layers.Concatenate(axis=-1)([cls, loc])
+ 
+-    # confidence thresholding
+-    mask = conf_threshold < cls[..., 1]
+-    result = tf.boolean_mask(tensor=result, mask=mask)
+-
+-    # non-maximum suppression
+-    mask = tf.image.non_max_suppression(boxes=result[..., -4:],
+-                                        scores=result[..., 1],
+-                                        max_output_size=nms_max_output_size,
+-                                        iou_threshold=nms_iou_threshold,
+-                                        name='non_maximum_suppresion')
+-    result = tf.gather(params=result, indices=mask, axis=0)
+-
+-    # top-k filtering
+-    top_k_value = tf.math.minimum(tf.constant(top_k), tf.shape(result)[0])
+-    mask = tf.nn.top_k(result[..., 1], k=top_k_value, sorted=True).indices
+-    result = tf.gather(params=result, indices=mask, axis=0)
+-
+     return result
+ 
+ 
+diff --git a/tf/convert_tensorflow.py b/tf/convert_tensorflow.py
+index ca6b99b..97d087c 100644
+--- a/tf/convert_tensorflow.py
++++ b/tf/convert_tensorflow.py
+@@ -1,9 +1,9 @@
+ import argparse
+ import sys
+ 
+-from tf.backend.utils import load_weight
+-from tf.model.rfb_320 import create_rfb_net
+-from tf.model.slim_320 import create_slim_net
++from backend.utils import load_weight
++from model.rfb_320 import create_rfb_net
++from model.slim_320 import create_slim_net
+ 
+ parser = argparse.ArgumentParser(
+     description='convert model')
+@@ -14,7 +14,7 @@ args = parser.parse_args()
+ 
+ 
+ def main():
+-    input_shape = (240, 320)  # H,W
++    input_shape = (128, 128)  # H,W
+     base_channel = 8 * 2
+     num_classes = 2
+ 
+@@ -31,7 +31,7 @@ def main():
+         sys.exit(1)
+ 
+     load_weight(model, torch_path, mapping_table)
+-    model.save(f'export_models/{args.net_type}/', include_optimizer=False)
++    model.save(f'export_models/{args.net_type}_ultraslim/', include_optimizer=False)
+ 
+ 
+ if __name__ == '__main__':
+diff --git a/tf/model/rfb_320.py b/tf/model/rfb_320.py
+index 387edd0..9ea64f5 100644
+--- a/tf/model/rfb_320.py
++++ b/tf/model/rfb_320.py
+@@ -1,7 +1,7 @@
+ import tensorflow as tf
+ 
+-from tf.backend.op import conv_bn, conv_dw, basic_rfb, separable_conv
+-from tf.backend.utils import post_processing
++from backend.op import conv_bn, conv_dw, basic_rfb, separable_conv
++from backend.utils import post_processing
+ 
+ conf_threshold = 0.6
+ nms_iou_threshold = 0.3
+diff --git a/tf/model/slim_320.py b/tf/model/slim_320.py
+index 5b1b27a..03c623b 100644
+--- a/tf/model/slim_320.py
++++ b/tf/model/slim_320.py
+@@ -1,7 +1,7 @@
+ import tensorflow as tf
+ 
+-from tf.backend.op import conv_bn, conv_dw, separable_conv
+-from tf.backend.utils import post_processing
++from backend.op import conv_bn, conv_dw, separable_conv
++from backend.utils import post_processing
+ 
+ conf_threshold = 0.6
+ nms_iou_threshold = 0.3
+@@ -10,9 +10,9 @@ top_k = 100
+ center_variance = 0.1
+ size_variance = 0.2
+ 
+-image_size = [320, 240]  # default input size 320*240
+-feature_map_wh_list = [[40, 30], [20, 15], [10, 8], [5, 4]]  # default feature map size
+-min_boxes = [[10, 16, 24], [32, 48], [64, 96], [128, 192, 256]]
++image_size = [128, 128]  # default input size 320*240
++feature_map_wh_list = [[8, 8], [4, 4], [2, 2]]  # default feature map size
++min_boxes = [[32, 48], [64, 96], [128, 192, 256]]
+ 
+ 
+ def create_slim_net(input_shape, base_channel, num_classes):
+@@ -58,8 +58,8 @@ def create_slim_net(input_shape, base_channel, num_classes):
+     cls_3 = tf.keras.layers.Conv2D(3 * num_classes, kernel_size=3, padding='SAME',
+                                    name='cls_3_convbias')(header_3)
+ 
+-    result = post_processing([reg_0, reg_1, reg_2, reg_3],
+-                             [cls_0, cls_1, cls_2, cls_3],
++    result = post_processing([reg_1, reg_2, reg_3],
++                             [cls_1, cls_2, cls_3],
+                              num_classes, image_size, feature_map_wh_list, min_boxes,
+                              center_variance, size_variance)
+ 
