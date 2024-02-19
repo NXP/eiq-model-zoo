@@ -1,0 +1,4 @@
+tensorflow==2.11
+scipy==1.7.3
+numpy==1.21.3
+tqdm==4.65.0

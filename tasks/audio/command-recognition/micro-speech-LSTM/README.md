@@ -62,7 +62,7 @@ Here are performance figures evaluated on i.MX 8MP using BSP LF6.1.1_1.0.0 and o
  Int8  | 4.915 ms        | i.MX 8M Plus | CPU (4 threads) | benchmark_model --graph=model_int8.tflite --num_threads=4                                          
  Int8  | 1.911 ms        | i.MX 8M Plus | NPU             | benchmark_model --graph=model_int8.tflite --external_delegate_path=libvx_delegate.so      
  Int8  | 5.203 ms        | i.MX 93      | CPU (1 threads) | benchmark_model --graph=model_int8.tflite                                                          
- Int8  | 5.212 ms        | i.MX 93      | CPU (4 threads) | benchmark_model --graph=model_int8.tflite --num_threads=4                                          
+ Int8  | 5.212 ms        | i.MX 93      | CPU (2 threads) | benchmark_model --graph=model_int8.tflite --num_threads=2                                          
  Int8  | 1.461 ms        | i.MX 93      | NPU             | benchmark_model --graph=model_int8_vela.tflite --external_delegate_path=libethosu_delegate.so 
 
 **Note**: Refer to the [User Guide](https://www.nxp.com/docs/en/user-guide/IMX-MACHINE-LEARNING-UG.pdf), to find out where benchmark_model, libvx_delegate and libethosu_delegate are located.

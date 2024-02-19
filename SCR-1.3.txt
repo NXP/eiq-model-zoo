@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 NXP Software Content Register
 
-Package:                    NXP eIQ Model Zoo
-Version:                    1.2
+Package:                    NXP eIQ® Model Zoo
+Version:                    1.3
 
 Location:                   https://github.com/NXP/eiq-model-zoo
 Type of content:            Source code, scripts, images

@@ -60,7 +60,7 @@ SDK version 2.13.0 MCXN10 PRC, Toolchain MCUXpresso IDE 11.7.1 and LibC NewlibNa
  Int8  | 0.383 ms        | i.MX 8M Plus | CPU (4 threads) | benchmark_model --graph=kws_ref_model.tflite --num_threads=4                                     
  Int8  | 0.182 ms        | i.MX 8M Plus | NPU             | benchmark_model --graph=kws_ref_model.tflite --external_delegate_path=libvx_delegate.so 
  Int8  | 0.440 ms        | i.MX 93      | CPU (1 thread)  | benchmark_model --graph=kws_ref_model.tflite                                                     
- Int8  | 35.387 ms       | i.MX 93      | CPU (4 threads) | benchmark_model --graph=kws_ref_model.tflite --num_threads=4                                         
+ Int8  | 0.321 ms        | i.MX 93      | CPU (2 threads) | benchmark_model --graph=kws_ref_model.tflite --num_threads=2                                         
  Int8  | 0.409 ms        | i.MX 93      | NPU             | benchmark_model --graph=kws_ref_model_vela.tflite --external_delegate_path=libvx_delegate.so 
  Int8  | 62 ms           | MCX N947     | CPU             | MCUXpresso SDK                                                                                                                            |
  Int8  | 3.329 ms        | MCX N947     | NPU             | MCUXpresso SDK                                                                                                                            

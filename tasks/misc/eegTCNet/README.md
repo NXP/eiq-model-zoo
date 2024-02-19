@@ -64,7 +64,7 @@ Here are performance figures evaluated on i.MX 8MP and i.MX 93 using BSP LF6.1.3
  Int8  | 19.2728 ms      | i.MX 8M Plus | CPU (4 threads) | benchmark_model --graph=eegTCNet_quant_int8.tflite --num_threads=4                                     
  Int8  | -               | i.MX 8M Plus | NPU             | benchmark_model --graph=eegTCNet_quant_int8.tflite --external_delegate_path=libvx_delegate.so 
  Int8  | 15.025 ms       | i.MX 93      | CPU (1 thread)  | benchmark_model --graph=eegTCNet_quant_int8.tflite                                                     
- Int8  | 22.715 ms       | i.MX 93      | CPU (4 threads) | benchmark_model --graph=eegTCNet_quant_int8.tflite --num_threads=4                                                    
+ Int8  | 13.884 ms       | i.MX 93      | CPU (2 threads) | benchmark_model --graph=eegTCNet_quant_int8.tflite --num_threads=2                                                    
  Int8  | 15.355 ms       | i.MX 93      | NPU             | benchmark_model --graph=eegTCNet_quant_int8.tflite --external_delegate_path=libethosu_delegate.so                                                    
 
 **Note**: Refer to the [User Guide](https://www.nxp.com/docs/en/user-guide/IMX-MACHINE-LEARNING-UG.pdf), to find out where benchmark_model, libvx_delegate and libethosu_delegate are located.
@@ -72,12 +72,7 @@ Here are performance figures evaluated on i.MX 8MP and i.MX 93 using BSP LF6.1.3
 ## Download and run
 
 0. Download and install Python 3.7.4 : https://www.python.org/downloads/release/python-374/
-1. run ```bash recipe.sh```recipe.sh to download required files and to prepare dataset
-2. run quantize_model.py file with python 3.7.4, e.g.:
-
-````
-py -3.7 quantize_model.py
-````
+1. run ```bash recipe.sh```recipe.sh to download required files, prepare dataset and quantize model
 
 The TFLite model file for i.MX 8M Plus and i.MX 93 is `.tflite`. 
 

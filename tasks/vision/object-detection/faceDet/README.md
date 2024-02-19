@@ -49,7 +49,7 @@ Here are performance figures evaluated on i.MX 8MP and i.MX 93 using BSP LF6.1.3
 | Int8  |    4.995 ms     |   i.MX 8M Plus   |   CPU (4 threads)    | benchmark_model --graph=yolo_face_detect.tflite --num_threads=4                                |  
 | Int8  |    1.128 ms     |   i.MX 8M Plus   |         NPU          | benchmark_model --graph=yolo_face_detect.tflite --external_delegate_path=libvx_delegate.so     | 
 | Int8  |    6.095 ms     |     i.MX 93      |    CPU (1 thread)    | benchmark_model --graph=yolo_face_detect.tflite                                                |
-| Int8  |     143 ms      |     i.MX 93      |   CPU (2 threads)    | benchmark_model --graph=yolo_face_detect.tflite --num_threads=2                                |
+| Int8  |    4.834 ms     |     i.MX 93      |   CPU (2 threads)    | benchmark_model --graph=yolo_face_detect.tflite --num_threads=2                                |
 | Int8  |    0.556 ms     |     i.MX 93      |         NPU          | benchmark_model --graph=yolo_face_detect.tflite --external_delegate_path=libethosu_delegate.so |
 | int8  |      25ms       |   MCXN947 BRK    |         NPU          | TFLite Micro                                                                                   |
 | int8  |      272ms      | i.MX RT 1060 EVK | CPU(600M Cortext M7) | TFLite Micro                                                                                   |

@@ -44,14 +44,16 @@ Categorical accuracy is the number of correct predictions divided by the total n
 
 ## Model List
 
- Model name                                       | Architecture | Backbone     | Training Dataset | Acc FP32 | Acc INT8 | Input size | OPS   | MParams | FP32 Size | INT8 Size | Compatibility                                   
---------------------------------------------------|--------------|--------------|------------------|----------|----------|------------|-------|---------|-----------|-----------|-------------------------------------------------
- [Deepface-emotion](./deepface-emotion/README.md) | CNN          | Custom       | FER2013          | 0.57     | TODO     | 48x48      | 58.5M | 1.49    | 5.8MB     | 1.5MB     | i.MX 8M Plus, i.MX 93                           
- [MobileNet V1](./mobilenetv1/README.md)          | CNN          | MobileNet V1 | ImageNet         | 0.41     | 0.39     | 128x128    | 28M   | 0.47    | 1.88MB    | 0.47MB    | i.MX 8M Plus, i.MX 93, i.MX RT1170, i.MX RT1050 
- [Tiny ResNet](./tiny-resnet/README.md)           | CNN          | ResNet       | CIFAR-10         | 0.87     | 0.75     | 32x32      | 25M   | 0.078   | 0.31MB    | 0.097MB   | MCX N947, i.MX 8M Plus, i.MX 93                 
- [Visual Wake Word](./visual-wake-word/README.md) | CNN          | MobileNet V1 | vww_coco2014     | 0.75     | 0.75     | 96x96      | 15M   | 0.221   | 0.846MB   | 0.326MB   | MCX N947, i.MX 8M Plus, i.MX 93                 
- [Mobilenet V2](./mobilenetv2/README.md)          | CNN          | MobileNet V2 | ImageNet         | 0.66     | 0.64     | 224x224    | 608M  | 3.539   | 13.7MB    | 3.9MB     | i.MX 8MP, i.MX 93                               
- [MNasNet](./mnasnet/README.md)                   | CNN          | custom       | ImageNet         | 0.77     | 0.77     | 224x224    | 447M  | 2.9M    | 11.4MB    | 3.3MB     | i.MX 8MP                                        
+ Model name                                        | Architecture | Backbone     | Training Dataset | Acc FP32 | Acc INT8 | Input size | OPS   | MParams | FP32 Size | INT8 Size | Compatibility                                   
+---------------------------------------------------|--------------|--------------|------------------|----------|----------|------------|-------|---------|-----------|-----------|-------------------------------------------------
+ [Deepface-emotion](./deepface-emotion/README.md)  | CNN          | Custom       | FER2013          | 0.57     | TODO     | 48x48      | 58.5M | 1.49    | 5.8MB     | 1.5MB     | i.MX 8M Plus, i.MX 93                           
+ [MobileNet V1](./mobilenetv1/README.md)           | CNN          | MobileNet V1 | ImageNet         | 0.41     | 0.39     | 128x128    | 28M   | 0.47    | 1.88MB    | 0.47MB    | i.MX 8M Plus, i.MX 93, i.MX RT1170, i.MX RT1050 
+ [Tiny ResNet](./tiny-resnet/README.md)            | CNN          | ResNet       | CIFAR-10         | 0.87     | 0.75     | 32x32      | 25M   | 0.078   | 0.31MB    | 0.097MB   | MCX N947, i.MX 8M Plus, i.MX 93                 
+ [Visual Wake Word](./visual-wake-word/README.md)  | CNN          | MobileNet V1 | vww_coco2014     | 0.75     | 0.75     | 96x96      | 15M   | 0.221   | 0.846MB   | 0.326MB   | MCX N947, i.MX 8M Plus, i.MX 93                 
+ [Mobilenet V2](./mobilenetv2/README.md)           | CNN          | MobileNet V2 | ImageNet         | 0.66     | 0.64     | 224x224    | 608M  | 3.539   | 13.7MB    | 3.9MB     | i.MX 8MP, i.MX 93                               
+ [MNasNet](./mnasnet/README.md)                    | CNN          | custom       | ImageNet         | 0.77     | 0.77     | 224x224    | 447M  | 2.9M    | 11.4MB    | 3.3MB     | i.MX 8MP                   
+ [EfficientNet-lite](./efficientnet-lite/README.md)| CNN          | EfficientNet | ImageNet         | 0.75     | 0.74     | 224x224    | 814M  | 4.7M    | 18MB      | 5.2MB     | i.MX 8M Plus, i.MX 93    
+ [ResNet](./resnet/README.md)                      | CNN          | ResNet       | Imagenet         | 0.70     | 0.69     | 224x224    | 6.98M | 25      | 100MB     | 25MB      | i.MX 8MP, i.MX 93              
 
 ## References
 

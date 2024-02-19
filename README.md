@@ -29,6 +29,7 @@ Multiple models may be proposed for the same task. Each model has its own inform
 
 - [anomaly detection](./tasks/audio/anomaly-detection/README.md)
 - [command recognition](./tasks/audio/command-recognition/README.md)
+- [speech recognition](./tasks/audio/speech-recognition/README.md)
 
 #### [Vision](./tasks/vision/README.md)
 

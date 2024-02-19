@@ -3,10 +3,10 @@
 
 set -e
 
-python3.8 -m venv env
+python3 -m venv env
 source ./env/bin/activate
 pip install --upgrade pip
-pip install -r requirements.txt
+pip install -r requirements_data.txt
 
 if [ ! -d "eeg-tcnet-master" ]; then
   wget https://github.com/iis-eth-zurich/eeg-tcnet/archive/refs/heads/master.zip
@@ -23,8 +23,18 @@ if [ ! -d "data" ]; then
 
   cd ..
 fi
-python3.8 prepare_dataset.py --path=data
+python3 prepare_dataset.py --path=data
 
 deactivate
 
 rm -rf env
+
+python3.7 -m venv env-quant
+source ./env-quant/bin/activate
+pip install --upgrade pip
+pip install -r requirements_model.txt
+
+python3.7 quantize_model.py
+
+deactivate
+rm -rf env-quant

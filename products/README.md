@@ -23,6 +23,7 @@ This page contains a list of each supported platform with its supported models.
 | [Tiny-ResNet](../tasks/vision/classification/tiny-resnet/README.md)                      | Image classification    | CIFAR-10        |
 | [MobileNet V2](../tasks/vision/classification/mobilenetv2/README.md)                     | Image classification    | Imagenet        |
 | [MnasNet](../tasks/vision/classification/mnasnet/README.md)                              | Image classification    | Imagenet        |
+| [EfficientNet-lite](../tasks/vision/classification/efficientnet-lite/README.md)          | Image classification    | Imagenet        |
 | [Visual Wake Word](../tasks/vision/classification/visual-wake-word/README.md)            | Image classification    | VW COCO2014     |
 | [EegTCNet](../tasks/misc/eegTCNet/README.md)                                             | Others / classification | 4 motor imagery |
 | [MicroSpeech LSTM](../tasks/audio/command-recognition/micro-speech-LSTM/README.md)       | Command recognition     | Speech commands |
@@ -30,6 +31,8 @@ This page contains a list of each supported platform with its supported models.
 | [Anomaly detection AD](../tasks/audio/anomaly-detection/deep-autoencoder/README.md)      | Anomaly detection       | ToyADMOS        |
 | [FaceDet](../tasks/vision/object-detection/faceDet/README.md)                            | Object detection        | WiderFace       |
 | [MiDaS v2.1 Small](../tasks/vision/monocular-depth-estimation/midas/README.md)           | Mono Depth Estimation   | 10 datasets     |
+| [wav2letter](../tasks/audio/speech-recognition/wav2letter/README.md)                     | Speech recognition      | LibriSpeech     |
+| [ResNet50](../tasks/vision/classification/resnet/README.md)                              | Image classification    | Imagenet        |
 
 ## i.MX 93
 
@@ -46,6 +49,7 @@ This page contains a list of each supported platform with its supported models.
 | [WHENet](../tasks/vision/pose-estimation/whenet/README.md)                               | Pose estimation (head)  | 300W-LP         |
 | [Tiny-ResNet](../tasks/vision/classification/tiny-resnet/README.md)                      | Image classification    | CIFAR-10        |
 | [MobileNet V2](../tasks/vision/classification/mobilenetv2/README.md)                     | Image classification    | Imagenet        |
+| [EfficientNet-lite](../tasks/vision/classification/efficientnet-lite/README.md)          | Image classification    | Imagenet        |
 | [Visual Wake Word](../tasks/vision/classification/visual-wake-word/README.md)            | Image classification    | VW COCO2014     |
 | [EegTCNet](../tasks/misc/eegTCNet/README.md)                                             | Others / classification | 4 motor imagery |
 | [MicroSpeech LSTM](../tasks/audio/command-recognition/micro-speech-LSTM/README.md)       | Command recognition     | Speech commands |
@@ -53,6 +57,8 @@ This page contains a list of each supported platform with its supported models.
 | [Anomaly detection AD](../tasks/audio/anomaly-detection/deep-autoencoder/README.md)      | Anomaly detection       | ToyADMOS        |
 | [FaceDet](../tasks/vision/object-detection/faceDet/README.md)                            | Object detection        | WiderFace       |
 | [MiDaS v2.1 Small](../tasks/vision/monocular-depth-estimation/midas/README.md)           | Mono Depth Estimation   | 10 datasets     |
+| [wav2letter](../tasks/audio/speech-recognition/wav2letter/README.md)                     | Speech recognition      | LibriSpeech     |
+| [ResNet50](../tasks/vision/classification/resnet/README.md)                              | Image classification    | Imagenet        |
 
 ## i.MX RT1170
 
@@ -78,11 +84,11 @@ This page contains a list of each supported platform with its supported models.
 
 ## MCX N947
 
-| Model                                                               | Task                 | Dataset  |
-|---------------------------------------------------------------------|----------------------|----------|
-| [Tiny-ResNet](../tasks/vision/classification/tiny-resnet/README.md) | Image classification | CIFAR-10 |
-| [Visual Wake Word](../tasks/vision/classification/visual-wake-word/README.md)         | Image classification   | VW COCO2014     |
-| [Keyword spotting](../tasks/audio/commands-recognition/keyword-spotting_DSCNN/README.md) | Command recognition     | Speech commands |
-| [Anomaly detection AD](../tasks/audio/anomaly-detection/deep-autoencoder/README.md)      | Anomaly detection       | ToyADMOS        |
-| [FaceDet](../tasks/vision/object-detection/faceDet/README.md)                            | Object detection        | WiderFace       |
-| [Ultraface-Ultraslim](../tasks/vision/object-detection/ultraface-ultraslim/README.md)    | Object detection        | WiderFace       |
+| Model                                                                                    | Task                 | Dataset         |
+|------------------------------------------------------------------------------------------|----------------------|-----------------|
+| [Tiny-ResNet](../tasks/vision/classification/tiny-resnet/README.md)                      | Image classification | CIFAR-10        |
+| [Visual Wake Word](../tasks/vision/classification/visual-wake-word/README.md)            | Image classification | VW COCO2014     |
+| [Keyword spotting](../tasks/audio/commands-recognition/keyword-spotting_DSCNN/README.md) | Command recognition  | Speech commands |
+| [Anomaly detection AD](../tasks/audio/anomaly-detection/deep-autoencoder/README.md)      | Anomaly detection    | ToyADMOS        |
+| [FaceDet](../tasks/vision/object-detection/faceDet/README.md)                            | Object detection     | WiderFace       |
+| [Ultraface-Ultraslim](../tasks/vision/object-detection/ultraface-ultraslim/README.md)    | Object detection     | WiderFace       |
