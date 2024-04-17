@@ -20,7 +20,7 @@ SCORE_THRESHOLD = 0.20
 IOU_THRESHOLD = 0.5
 INFERENCE_IMG_SIZE = 300
 
-COCO_WEBSITE = "http://images.cocodataset.org"
+COCO_WEBSITE = "https://images.cocodataset.org"
 VAL_IMG_URL = COCO_WEBSITE + "/zips/val2017.zip"
 VAL_ANNO_URL = COCO_WEBSITE + "/annotations/annotations_trainval2017.zip"
 

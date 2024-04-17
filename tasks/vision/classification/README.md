@@ -64,6 +64,6 @@ International conference on neural information processing. Springer, Berlin, Hei
 pattern recognition. Ieee, 2009.
 
 [3] Alex
-Krizhevsky, [Learning Multiple Layers of Features from Tiny Images](http://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf),
+Krizhevsky, [Learning Multiple Layers of Features from Tiny Images](https://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf),
 
 2009.

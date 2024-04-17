@@ -86,7 +86,7 @@ An example of how to use the model is in `utils/exmaple.py`. The output labels a
 
 Model implementation: https://github.com/mlcommons/tiny/tree/master/benchmark/training/image_classification
 
-[1]  [Learning Multiple Layers of Features from Tiny Images](http://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf),
+[1]  [Learning Multiple Layers of Features from Tiny Images](https://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf),
 Alex Krizhevsky, 2009.
 
 [2] Banbury, Colby, et al. "Mlperf tiny benchmark." arXiv preprint arXiv:2106.07597 (2021).

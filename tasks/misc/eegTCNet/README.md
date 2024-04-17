@@ -92,6 +92,6 @@ Model implementation:  https://github.com/iis-eth-zurich/eeg-tcnet
 [1] Thorir Mar Ingolfsson et al., "EEG-TCNet: An Accurate Temporal Convolutional Network for Embedded Motor-Imagery
 Brain-Machine Interfaces", 2020 arXiv preprint arXiv: [2006.00622](https://arxiv.org/pdf/2006.00622.pdf)
 
-[2] Four class motor imagery (001-2014) http://bnci-horizon-2020.eu/database/data-sets
+[2] Four class motor imagery (001-2014) https://bnci-horizon-2020.eu/database/data-sets
 
 [3] Four class motor imagery, dataset 2a https://www.bbci.de/competition/iv/desc_2a.pdf

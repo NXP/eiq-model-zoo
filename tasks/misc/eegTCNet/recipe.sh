@@ -18,8 +18,8 @@ fi
 if [ ! -d "data" ]; then
   mkdir data
   cd data || exit
-  wget http://bnci-horizon-2020.eu/database/data-sets/001-2014/A01T.mat
-  wget http://bnci-horizon-2020.eu/database/data-sets/001-2014/A01E.mat
+  wget https://bnci-horizon-2020.eu/database/data-sets/001-2014/A01T.mat
+  wget https://bnci-horizon-2020.eu/database/data-sets/001-2014/A01E.mat
 
   cd ..
 fi

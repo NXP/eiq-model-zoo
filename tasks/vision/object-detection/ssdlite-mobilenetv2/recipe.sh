@@ -4,7 +4,7 @@
 
 set -e
 
-wget http://download.tensorflow.org/models/object_detection/ssdlite_mobilenet_v2_coco_2018_05_09.tar.gz
+wget https://download.tensorflow.org/models/object_detection/ssdlite_mobilenet_v2_coco_2018_05_09.tar.gz
 wget https://github.com/nnsuite/testcases/raw/master/DeepLearningModels/tensorflow-lite/ssd_mobilenet_v2_coco/box_priors.txt
 wget https://github.com/nnsuite/testcases/raw/master/DeepLearningModels/tensorflow-lite/ssd_mobilenet_v2_coco/coco_labels_list.txt     
 
@@ -20,7 +20,7 @@ pip install protobuf==3.19.0
 pip install numpy==1.23.5
 pip install Pillow==9.5.0
 
-wget http://images.cocodataset.org/zips/val2017.zip
+wget https://images.cocodataset.org/zips/val2017.zip
 unzip val2017.zip
 
 python3.8 -c "

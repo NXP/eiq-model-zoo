@@ -79,7 +79,7 @@ To create the TensorFlow Lite model fully quantized in int8 with int8 input and 
     export KAGGLE_KEY='0123456789'
     bash recipe.sh
 
-IMPORTANT: Before running `recipe.sh`, an account has to be created on [Kaggle](http://kaggle.com) in order to download the quantization calibration and evaluation dataset.
+IMPORTANT: Before running `recipe.sh`, an account has to be created on [Kaggle](https://kaggle.com) in order to download the quantization calibration and evaluation dataset.
 When the account is created, go to your Account page, create an API key and download it. Open the generated JSON file and write the contents in the `KAGGLE_USERNAME` and `KAGGLE_KEY` variables in the code snippet above.
 Finally, accept the competition rules [Challenges in Representation Learning: Facial Expression Recognition Challenge](https://www.kaggle.com/competitions/challenges-in-representation-learning-facial-expression-recognition-challenge/data) to enable the data download.
 

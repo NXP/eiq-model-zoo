@@ -9,7 +9,7 @@ source ./env/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 
-wget http://vis-www.cs.umass.edu/lfw/lfw.tgz -O lfw.tgz
+wget https://vis-www.cs.umass.edu/lfw/lfw.tgz -O lfw.tgz
 tar xzf lfw.tgz
 
 mkdir -p ~/.deepface/weights

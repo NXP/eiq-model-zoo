@@ -5,7 +5,7 @@
 set -e
 
 # Fetch calibration images from COCO dataset
-wget http://images.cocodataset.org/zips/val2017.zip -O val2017.zip
+wget https://images.cocodataset.org/zips/val2017.zip -O val2017.zip
 unzip val2017.zip
 
 mkdir -p calib_data
