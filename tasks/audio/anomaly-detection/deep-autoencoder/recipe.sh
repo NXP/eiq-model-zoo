@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # SPDX-License-Identifier: MIT
-# Copyright 2023 NXP
+# Copyright 2023-2024 NXP
 set -e
 
 python3 -m venv env

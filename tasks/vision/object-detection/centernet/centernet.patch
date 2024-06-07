@@ -1,0 +1,72 @@
+# Copyright 2024 NXP
+# SPDX-License-Identifier: MIT
+
+From 45fd049d9929c04d216fd8164dbd25ebc51005ea Mon Sep 17 00:00:00 2001
+Subject: [PATCH] centernet
+
+---
+ .../export_tflite_graph_lib_tf2.py            | 45 +++----------------
+ 1 file changed, 6 insertions(+), 39 deletions(-)
+
+diff --git a/research/object_detection/export_tflite_graph_lib_tf2.py b/research/object_detection/export_tflite_graph_lib_tf2.py
+index 19b3d98..70b372b 100644
+--- a/research/object_detection/export_tflite_graph_lib_tf2.py
++++ b/research/object_detection/export_tflite_graph_lib_tf2.py
+@@ -262,48 +262,15 @@ class CenterNetModule(tf.Module):
+   @tf.function
+   def inference_fn(self, image):
+     """Encapsulates CenterNet inference for TFLite conversion.
+-
+-    Args:
+-      image: a float32 tensor of shape [1, image_height, image_width, channel]
+-        denoting the image pixel values.
+-
+-    Returns:
+-      A dictionary of predicted tensors:
+-        classes: a float32 tensor with shape [1, max_detections] denoting class
+-          ID for each detection.
+-        scores: a float32 tensor with shape [1, max_detections] denoting score
+-          for each detection.
+-        boxes: a float32 tensor with shape [1, max_detections, 4] denoting
+-          coordinates of each detected box.
+-        keypoints: a float32 with shape [1, max_detections, num_keypoints, 2]
+-          denoting the predicted keypoint coordinates (normalized in between
+-          0-1). Note that [:, :, :, 0] represents the y coordinates and
+-          [:, :, :, 1] represents the x coordinates.
+-        keypoint_scores: a float32 with shape [1, max_detections, num_keypoints]
+-          denoting keypoint confidence scores.
++    Post-processing is removed from this function.
+     """
+     image = tf.cast(image, tf.float32)
+-    image, shapes = self._model.preprocess(image)
++    image, _ = self._model.preprocess(image)
+     prediction_dict = self._model.predict(image, None)
+-    detections = self._model.postprocess(
+-        prediction_dict, true_image_shapes=shapes)
+-
+-    field_names = fields.DetectionResultFields
+-    classes_field = field_names.detection_classes
+-    classes = tf.cast(detections[classes_field], tf.float32)
+-    num_detections = tf.cast(detections[field_names.num_detections], tf.float32)
+-
+-    if self._include_keypoints:
+-      model_outputs = (detections[field_names.detection_boxes], classes,
+-                       detections[field_names.detection_scores], num_detections,
+-                       detections[field_names.detection_keypoints],
+-                       detections[field_names.detection_keypoint_scores])
+-    else:
+-      model_outputs = (detections[field_names.detection_boxes], classes,
+-                       detections[field_names.detection_scores], num_detections)
+-
+-    # tf.function@ seems to reverse order of inputs, so reverse them here.
+-    return model_outputs[::-1]
++    detections = (prediction_dict['object_center'][0], prediction_dict['box/scale'][0], 
++                  prediction_dict['box/offset'][0], prediction_dict['extracted_features'][0], 
++                  prediction_dict['preprocessed_inputs'][0])
++    return detections[::-1]
+ 
+ 
+ def export_tflite_model(pipeline_config, trained_checkpoint_dir,
+-- 
+2.25.1
+

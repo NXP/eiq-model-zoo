@@ -27,6 +27,11 @@ WIDER FACE[2] dataset is a face detection benchmark dataset, of which images are
 WIDER dataset. We choose 32,203 images and label 393,703 faces with a high degree of variability in scale, pose and
 occlusion as depicted in the sample images. WIDER FACE dataset is organized based on 61 event classes.
 
+### PASCAL VOC 2012
+The PASCAL Visual Object Classes (VOC) 2012 dataset [10] is a large-scale object detection and semantic segmentation dataset.
+
+It contains contains 20 object categories including vehicles, household, animals, and other: aeroplane, bicycle, boat, bus, car, motorbike, train, bottle, chair, dining table, potted plant, sofa, TV/monitor, bird, cat, cow, dog, horse, sheep, and person. Each image in this dataset has pixel-level segmentation annotations, bounding box annotations, and object class annotations. This dataset has been widely used as a benchmark for object detection, semantic segmentation, and classification tasks. The PASCAL VOC dataset is split into three subsets: 1,464 images for training, 1,449 images for validation and a private testing set.
+
 ## Metrics
 
 ### mAP
@@ -44,6 +49,9 @@ the [precision/recall](https://en.wikipedia.org/wiki/Precision_and_recall) curve
  [YOLOv4-tiny](./yolov4tiny/README.md)                  | YOLOv4[8]    | CSPDarkNet53[8]      | COCO[1]          | 0.40 (mAP@0.5IoU)                   | 0.33 (mAP@0.5IoU) | 416x416    | 6.9G | 6.05M  | 24MB      | 5.9MB     | i.MX 8M Plus, i.MX 93                    
  [SSDLite MobileNetV2](./ssdlite-mobilenetv2/README.md) | SSD[3]       | MobileNetV2 [4]      | COCO[1]          | 0.22                                | 0.16 (val)        | 300x300    | 1.5G | 4.3M   | 20MB      | 5.4MB     | i.MX 8M Plus, i.MX 93                    
  [FaceDet](./faceDet/README.md)                         | YoloV3[9]    | CSPDarkNet53[8]      | WIDER FACE       | -                                   | 0.53              | 160x128    | -    | 189K   | -         | 287KB     | i.MX 8M Plus, i.MX 93, RT1060,   MCXN947 
+ [FastestDet](./fastestDet/README.md)                   | FastestDet   | ShuffleNetV2[7] 1.0x | PASCAL VOC [10]  | 0.5742 (val) (AP@0.5 IoU)           | 0.5736 (val) (mAP@0.5 IoU) | 220x220 | 65.593M | 152.9K | 659 KB | 315 KB | RT1170
+ [CenterNet](./centernet/README.md)                     | CenterNet[11]| MobileNetV2 [4]      | COCO[1]          | 0.20                                | 0.17              | 512x512    | 4.7G | 2.36M  | 9.0MB     | 2.8MB     | i.MX 8M Plus, i.MX 93 
+ [Yolov8](./yolov8/README.md)                           | Yolov8[12]   | custom               | COCO[1]          | 0.463 (mAP@0.5IoU)                  | 0.409 (mAP@0.5IoU) | 640x640   | 8.7B | 3.2M   | 12 MB     | 3 MB      | i.MX 8M Plus, i.MX 93
 
 ## References
 
@@ -71,3 +79,9 @@ European conference on computer vision (ECCV). 2018.
 detection." arXiv preprint arXiv:2004.10934 (2020).
 
 [9] Redmon, Joseph, and Ali Farhadi. "Yolov3: An incremental improvement." arXiv preprint arXiv:1804.02767 (2018).
+
+[10] Everingham, Mark, et al. "The pascal visual object classes (voc) challenge." International journal of computer vision 88 (2010): 303-338.
+
+[11] Xingyi Zhou, Dequan Wang, and Philipp Krahenbuhl. Objects as points. arXiv preprint arXiv:1904.07850, 2019.
+
+[12] Jocher, Glenn, and Chaurasia, Ayush and Jing Qiu.  Ultralytics YOLOv8. 8.0.0, 2023, https://github.com/ultralytics/ultralytics

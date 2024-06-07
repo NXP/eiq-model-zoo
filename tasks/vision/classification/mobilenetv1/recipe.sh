@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2023 NXP
+# Copyright 2023-2024 NXP
 # SPDX-License-Identifier: MIT
 
 set -e
@@ -14,7 +14,7 @@ ARCHIVE_NAME=mobilenet_v1_${MODEL_SCALE}_${MODEL_INPUT_RESOLUTION}_quant.tgz
 
 ## Download pre-trained model and extract to tmp dir
 mkdir -p tmp
-wget http://download.tensorflow.org/models/mobilenet_v1_2018_08_02/${ARCHIVE_NAME}
+wget --no-check-certificate https://download.tensorflow.org/models/mobilenet_v1_2018_08_02/${ARCHIVE_NAME}
 tar xzvf ${ARCHIVE_NAME} -C tmp
 rm ${ARCHIVE_NAME}
 

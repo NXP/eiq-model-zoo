@@ -1,4 +1,4 @@
-# Copyright 2023 NXP
+# Copyright 2023-2024 NXP
 diff --git a/nanodet/model/head/nanodet_head.py b/nanodet/model/head/nanodet_head.py
 index 8e145d6..7201f9d 100755
 --- a/nanodet/model/head/nanodet_head.py

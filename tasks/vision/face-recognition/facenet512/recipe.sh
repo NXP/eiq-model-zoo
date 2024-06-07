@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2022-2023 NXP
+# Copyright 2022-2024 NXP
 # SPDX-License-Identifier: MIT
 
 set -e
@@ -9,7 +9,7 @@ source ./env/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 
-wget http://vis-www.cs.umass.edu/lfw/lfw.tgz -O lfw.tgz
+wget https://vis-www.cs.umass.edu/lfw/lfw.tgz -O lfw.tgz
 tar xzf lfw.tgz
 
 mkdir -p ~/.deepface/weights

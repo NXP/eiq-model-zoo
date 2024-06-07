@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # SPDX-License-Identifier: MIT
-# Copyright 2023 NXP
+# Copyright 2023-2024 NXP
 
 set -e
 

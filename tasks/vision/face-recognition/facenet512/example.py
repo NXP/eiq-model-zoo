@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright 2022-2023 NXP
+# Copyright 2022-2024 NXP
 # SPDX-License-Identifier: MIT
 
 import tensorflow as tf

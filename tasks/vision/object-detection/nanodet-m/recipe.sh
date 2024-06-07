@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2022-2023 NXP
+# Copyright 2022-2024 NXP
 # SPDX-License-Identifier: MIT
 
 set -e
@@ -60,7 +60,7 @@ pip install --upgrade pip
 pip install wheel 
 pip install -r ../requirements_tf.txt 
 
-wget http://images.cocodataset.org/zips/val2017.zip
+wget --no-check-certificate https://images.cocodataset.org/zips/val2017.zip
 unzip val2017.zip
 
 python3.8 -c "

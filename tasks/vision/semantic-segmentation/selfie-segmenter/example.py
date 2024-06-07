@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Copyright 2023 NXP
+Copyright 2023-2024 NXP
 SPDX-License-Identifier: MIT
 
 Model: MediaPipe's Selfie Segmenter

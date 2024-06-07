@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # SPDX-License-Identifier: MIT
-# Copyright 2023 NXP
+# Copyright 2023-2024 NXP
 
 
 def prepare_model_settings(label_count, sample_rate, args):

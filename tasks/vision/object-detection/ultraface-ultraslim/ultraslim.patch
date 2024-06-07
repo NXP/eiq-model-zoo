@@ -1,4 +1,4 @@
-# Copyright 2023 NXP
+# Copyright 2023-2024 NXP
 diff --git a/tf/backend/utils.py b/tf/backend/utils.py
 index cad741e..49b6851 100644
 --- a/tf/backend/utils.py

@@ -31,7 +31,7 @@ The int8 model has been tested on i.MX 8MP (BSP 6.1.22_2.0.0_MX8MP) using benchm
 
 ## Training and evaluation
 
-The model has been trained and evaluated on the [PASCAL VOC dataset](http://host.robots.ox.ac.uk/pascal/VOC/) [1], which features 20 classes.
+The model has been trained and evaluated on the [PASCAL VOC dataset](https://host.robots.ox.ac.uk/pascal/VOC/) [1], which features 20 classes.
 It achieved a score of 70.19% mIoU on the test set, according to [the source of the model](https://github.com/tensorflow/models/blob/master/research/deeplab/g3doc/model_zoo.md).
 
 The training code can be found in the [TensorFlow Models repository](https://github.com/tensorflow/models/blob/master/research/deeplab/train.py).

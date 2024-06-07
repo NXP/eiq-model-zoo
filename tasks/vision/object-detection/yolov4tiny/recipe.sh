@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2023 NXP
+# Copyright 2023-2024 NXP
 # SPDX-License-Identifier: MIT
 
 set -e
@@ -16,7 +16,7 @@ pip install --upgrade pip
 pip install tensorflow==2.10.0
 pip install Pillow
 
-wget http://images.cocodataset.org/zips/val2017.zip
+wget --no-check-certificate https://images.cocodataset.org/zips/val2017.zip
 unzip val2017.zip
 
 # convert model from darknet to tensorflow lite

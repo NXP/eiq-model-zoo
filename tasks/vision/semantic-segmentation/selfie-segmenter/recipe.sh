@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Copyright 2023 NXP
+# Copyright 2023-2024 NXP
 # SPDX-License-Identifier: MIT
 
 set -e
 
 # Fetch calibration images from COCO dataset
-wget http://images.cocodataset.org/zips/val2017.zip -O val2017.zip
+wget --no-check-certificate https://images.cocodataset.org/zips/val2017.zip -O val2017.zip
 unzip val2017.zip
 
 mkdir -p calib_data

@@ -32,7 +32,7 @@ The float32 and int8 models have been tested on i.MX 8MP and i.MX 93 using bench
 
 The model has been trained and evaluated on the LFW dataset. It achieved a score of 99.65% according to [the source of the model](https://github.com/serengil/deepface/).
 
-We re-evaluated the model on [LFW aligned with deep funneling](http://vis-www.cs.umass.edu/lfw/lfw-deepfunneled.tgz) on the [pairsDevTest](http://vis-www.cs.umass.edu/lfw/pairsDevTest.txt) split:
+We re-evaluated the model on [LFW aligned with deep funneling](https://vis-www.cs.umass.edu/lfw/lfw-deepfunneled.tgz) on the [pairsDevTest](https://vis-www.cs.umass.edu/lfw/pairsDevTest.txt) split:
 
 Model | Accuracy
 ---|---

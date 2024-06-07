@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # SPDX-License-Identifier: MIT
-# Copyright 2023 NXP
+# Copyright 2023-2024 NXP
 
 import os
 import numpy as np

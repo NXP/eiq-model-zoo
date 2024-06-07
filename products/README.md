@@ -33,6 +33,11 @@ This page contains a list of each supported platform with its supported models.
 | [MiDaS v2.1 Small](../tasks/vision/monocular-depth-estimation/midas/README.md)           | Mono Depth Estimation   | 10 datasets     |
 | [wav2letter](../tasks/audio/speech-recognition/wav2letter/README.md)                     | Speech recognition      | LibriSpeech     |
 | [ResNet50](../tasks/vision/classification/resnet/README.md)                              | Image classification    | Imagenet        |
+| [Fast-SRGAN](../tasks/vision/super-resolution/Fast-SRGAN/README.md)                      | Super resolution        | DIV2k           |
+| [SCI](../tasks/vision/low-light-enhancement/SCI/README.md)                               | Low-light enhancement   | LOL             |
+| [YOLACT-Edge](../tasks/vision/instance-segmentation/YOLACT-Edge/README.md)               | Instance segmentation   | COCO            |
+| [CenterNet](../tasks/vision/object-detection/centernet/README.md)                        | Object detection        | COCO            |
+| [Yolov8](../tasks/vision/object-detection/yolov8/README.md)                              | Object detection        | COCO            |
 
 ## i.MX 93
 
@@ -59,6 +64,11 @@ This page contains a list of each supported platform with its supported models.
 | [MiDaS v2.1 Small](../tasks/vision/monocular-depth-estimation/midas/README.md)           | Mono Depth Estimation   | 10 datasets     |
 | [wav2letter](../tasks/audio/speech-recognition/wav2letter/README.md)                     | Speech recognition      | LibriSpeech     |
 | [ResNet50](../tasks/vision/classification/resnet/README.md)                              | Image classification    | Imagenet        |
+| [Fast-SRGAN](../tasks/vision/super-resolution/Fast-SRGAN/README.md)                      | Super resolution        | DIV2k           |
+| [YOLACT-Edge](../tasks/vision/instance-segmentation/YOLACT-Edge/README.md)               | Instance segmentation   | COCO            |
+| [SCI](../tasks/vision/low-light-enhancement/SCI/README.md)                               | Low-light enhancement   | LOL             |
+| [CenterNet](../tasks/vision/object-detection/centernet/README.md)                        | Object detection        | COCO            |
+| [Yolov8](../tasks/vision/object-detection/yolov8/README.md)                              | Object detection        | COCO            |
 
 ## i.MX RT1170
 
@@ -67,6 +77,7 @@ This page contains a list of each supported platform with its supported models.
 | [NanoDet-M](../tasks/vision/object-detection/nanodet-m/README.md)           | Object detection     | COCO      |
 | [Ultraface-Slim](../tasks/vision/object-detection/ultraface-slim/README.md) | Object detection     | Widerface |
 | [MobileNet V1](../tasks/vision/classification/mobilenetv1/README.md)        | Image classification | ImageNet  |
+| [FastestDet](../tasks/vision/object-detection/fastestDet/README.md)         | Object detection     | PASCAL VOC|
 
 ## i.MX RT1050
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # SPDX-License-Identifier: MIT
-# Copyright 2023 NXP
+# Copyright 2023-2024 NXP
 
 import os
 import pathlib
@@ -21,7 +21,7 @@ def prepare_dataset(data_dir):
     if not data_dir.exists():
         tf.keras.utils.get_file(
             "mini_speech_commands.zip",
-            origin="http://storage.googleapis.com/download.tensorflow.org/data/mini_speech_commands.zip",
+            origin="https://storage.googleapis.com/download.tensorflow.org/data/mini_speech_commands.zip",
             extract=True,
             cache_dir=".",
             cache_subdir="data",
@@ -191,8 +191,7 @@ def get_datasets_with_filenames(data_dir):
     train_ds = preprocess_dataset(train_files)
     val_ds = preprocess_dataset(val_files)
     test_ds = preprocess_dataset(test_files)
-    print(val_ds)
-    print(test_ds)
+
     return train_ds, val_ds, test_ds
 
 

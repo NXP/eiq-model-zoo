@@ -2,7 +2,7 @@
 NXP Software Content Register
 
 Package:                    NXP eIQ® Model Zoo
-Version:                    1.3
+Version:                    1.4
 
 Location:                   https://github.com/NXP/eiq-model-zoo
 Type of content:            Source code, scripts, images
@@ -13,5 +13,4 @@ Origin:                     NXP (MIT)
                             Huawei Technologies Co., Ltd. (BSD-3-Clause)
                             Public domain dataset labels
                             Public domain images (Wikimedia)
-
 -------------------------------------------------------------------------------

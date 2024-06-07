@@ -38,6 +38,9 @@ Multiple models may be proposed for the same task. Each model has its own inform
 - [object detection](./tasks/vision/object-detection/README.md)
 - [pose estimation](./tasks/vision/pose-estimation/README.md)
 - [semantic segmentation](./tasks/vision/semantic-segmentation/README.md)
+- [super resolution](./tasks/vision/super-resolution/README.md)
+- [instance-segmentation](./tasks/vision/instance-segmentation/README.md)
+- [low-light enhancement](./tasks/vision/low-light-enhancement/README.md)
 
 #### [Misc. - other domains](./tasks/misc/README.md)
 
@@ -49,6 +52,6 @@ The model creation recipes were tested under Ubuntu 20.04 with Python 3.8.
 
 ## Legal information
 
-Copyright NXP 2023
+Copyright NXP 2024
 
 The code in this repository is provided under [MIT License](https://choosealicense.com/licenses/mit/).
