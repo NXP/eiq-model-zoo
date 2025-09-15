@@ -6,6 +6,7 @@ charset-normalizer==2.0.12
 flatbuffers==22.12.6
 future==0.18.2
 gast==0.3.3
+gdown==5.2.0
 google-auth==1.35.0
 google-auth-oauthlib==0.4.6
 google-pasta==0.2.0

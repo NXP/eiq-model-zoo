@@ -46,23 +46,11 @@ We convert the original model from Keras to TensorFlow Lite, and calibrate the q
 According to the authors of the paper, WHENet is applicable for full range head yaws thanks to its ability to regress 360 degrees of yaw, 
 and has applications such as autonomous driving and retail [1].
 
-## Performance
-
-Here are performance figures evaluated on i.MX 8M Plus and i.MX 93 (BSP LF6.1.22_2.0.0):
-
-Model   | Average latency  | Platform     | Accelerator       | Command
----     | ---              | ---          | ---               | ---
-Int8    | 216ms            | i.MX 8M Plus |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=whenet.tflite
-Int8    | 103ms            | i.MX 8M Plus |   CPU (4 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=whenet.tflite --num_threads=4
-Int8    | 134ms            | i.MX 93      |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=whenet.tflite
-Int8    | 101ms            | i.MX 93      |   CPU (2 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=whenet.tflite --num_threads=2
-Int8    | 38.8ms           | i.MX 93      |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=model_vela.tflite
-
 ## Download and run
 
-To download the TensorFlow Lite model fully quantized in int8 with int8 input and int8 output, run:
+To download the TensorFlow Lite model fully quantized in int8 with int8 input and int8 output, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
 
-    bash recipe.sh
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
 
 The TensorFlow Lite model file for i.MX 8M Plus and i.MX 93 CPU is `whenet.tflite`. The model for i.MX 93 NPU is in `model_imx93`.
 

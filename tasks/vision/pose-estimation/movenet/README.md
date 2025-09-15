@@ -42,24 +42,11 @@ The original model is converted from TensorFlow to TensorFlow Lite by Google. We
 
 Information about the use case and limitations of this network is available in the "Intended Use" section of the [Model Card](https://storage.googleapis.com/movenet/MoveNet.SinglePose%20Model%20Card.pdf).
 
-## Performance
-
-Here are performance figures evaluated on i.MX 8M Plus and i.MX 93 (BSP LF6.1.22_2.0.0):
-
-Model   | Average latency  | Platform     | Accelerator       | Command
----     | ---              | ---          | ---               | ---
-Int8    | 129.5ms          | i.MX 8M Plus |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=movenet.tflite
-Int8    | 54.8ms           | i.MX 8M Plus |   CPU (4 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=movenet.tflite --num_threads=4
-Int8    | 13.9ms           | i.MX 8M Plus |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=movenet.tflite  --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8    | 70.5ms           | i.MX 93      |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=movenet.tflite
-Int8    | 51.7ms           | i.MX 93      |   CPU (2 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=movenet.tflite --num_threads=2
-Int8    | 16.4ms           | i.MX 93      |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=model_vela.tflite
-
 ## Download and run
 
-To download the TensorFlow Lite model fully quantized in int8 with int8 input and float32 output, run:
+To download the TensorFlow Lite model fully quantized in int8 with int8 input and float32 output, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
 
-    bash recipe.sh
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
 
 The TensorFlow Lite model file for i.MX 8M Plus and i.MX 93 CPU is `movenet.tflite`. The model for i.MX 93 NPU is in `model_imx93`.
 

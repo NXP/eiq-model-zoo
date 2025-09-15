@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2024 NXP
+# Copyright 2024-2025 NXP
 # SPDX-License-Identifier: MIT
 
 set -e
@@ -8,16 +8,21 @@ set -e
 python3.8 -m venv env
 source ./env/bin/activate
 
-wget https://github.com/PINTO0309/yolact_edge_onnx_tensorrt_myriad/releases/download/1.0.4/yolact_edge_mobilenetv2_54_800000.onnx
+wget https://github.com/PINTO0309/yolact_edge_onnx_tensorrt_myriad/releases/download/1.0.4/yolact_edge_mobilenetv2_54_800000.onnx -O yolact_edge_mobilenetv2_54_800000.onnx 
 
-wget https://developer.download.nvidia.com/compute/redist/onnx-graphsurgeon/onnx_graphsurgeon-0.3.9-py2.py3-none-any.whl
+wget --no-check-certificate https://developer.download.nvidia.com/compute/redist/onnx-graphsurgeon/onnx_graphsurgeon-0.3.9-py2.py3-none-any.whl -O onnx_graphsurgeon-0.3.9-py2.py3-none-any.whl
 
 pip install --upgrade pip
 pip install -r requirements.txt
 pip install onnx_graphsurgeon-0.3.9-py2.py3-none-any.whl
 
-wget http://images.cocodataset.org/zips/val2017.zip
-unzip val2017.zip
+
+if [ ! -d "val2017" ]; then
+  wget http://images.cocodataset.org/zips/val2017.zip
+  unzip val2017.zip
+fi
+
+wget s3.us-central-1.wasabisys.com/onnx2tf-en/datas/calibration_image_sample_data_20x128x128x3_float32.npy
 
 python3.8 -c "
 import onnx2tf
@@ -70,6 +75,7 @@ with open('YOLACT-Edge.tflite', 'wb') as f:
 deactivate
 rm yolact_edge_mobilenetv2_54_800000.onnx
 rm onnx_graphsurgeon-0.3.9-py2.py3-none-any.whl
+rm calibration_image_sample_data_20x128x128x3_float32.npy
 rm val2017.zip 
 rm -rf yolact_edge_mobilenet
  

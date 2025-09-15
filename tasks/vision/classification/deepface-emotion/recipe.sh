@@ -1,15 +1,8 @@
 #!/usr/bin/env bash
-# Copyright 2022-2024 NXP
+# Copyright 2022-2025 NXP
 # SPDX-License-Identifier: MIT
 
 set -e
-
-if [ -z "$KAGGLE_USERNAME" ] || [ -z "$KAGGLE_KEY" ]
-then
-      echo "ERROR: This recipe script requires a Kaggle API key. 
-Follow the instructions in README.md to create an API key and add it to KAGGLE_USERNAME and KAGGLE_KEY environment variables."
-      exit 1
-fi
 
 python3.8 -m venv env
 source ./env/bin/activate
@@ -18,9 +11,9 @@ pip install -r requirements.txt
 
 
 # download dataset for calibration
-kaggle competitions download -c challenges-in-representation-learning-facial-expression-recognition-challenge
-unzip challenges-in-representation-learning-facial-expression-recognition-challenge.zip
-tar xzvf fer2013.tar.gz
+wget --no-check-certificate -O fer2013.zip https://www.kaggle.com/api/v1/datasets/download/msambare/fer2013
+unzip fer2013.zip
+
 
 mkdir -p ~/.deepface/weights
 
@@ -36,20 +29,14 @@ OUTPUT_TF_FILE_NAME = 'emotion_uint8_float32.tflite'
 IMAGES_PATH = 'test/*/*jpg'
 NIMAGES_REPRESENTATIVE_DATASET = 100
 
-with open('fer2013/fer2013.csv', 'r') as f:
-    lines = f.readlines()
-
-lines = [l.strip().split(',') for l in lines[1:]]
-lines = [(int(l[0]), np.array(l[1].split(' ')).reshape((48,48,1)).astype(np.float32)) for l in lines if l[2] == 'PrivateTest']
-
+files = glob.glob(IMAGES_PATH)
+random.shuffle(files)
 
 def representative_dataset():
 
-    random.shuffle(lines)
+    for filename in files[:100]:
 
-    for line in lines[:NIMAGES_REPRESENTATIVE_DATASET]:
-
-        image = line[1]
+        image = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)[..., None]
         image = (image[None, ...] /255.0)
     
         yield [image.astype(np.float32)]

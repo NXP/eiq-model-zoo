@@ -46,21 +46,11 @@ The quantization procedure can be found in the [TensorFlow Models repository](ht
 
 This model obtains good accuracy figures and is quite lightweight. However, the runtime is still somewhat high so it cannot be used for realtime image segmentation.
 
-## Performance
-
-Here are performance figures evaluated on i.MX 8M Plus (BSP LF6.1.22_2.0.0):
-
-Model   | Average latency  | Platform     | Accelerator       | Command
----     | ---              | ---          | ---               | ---
-Int8    | 1104ms           | i.MX 8M Plus |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=deeplabv3.tflite
-Int8    | 447ms            | i.MX 8M Plus |   CPU (4 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=deeplabv3.tflite --num_threads=4
-Int8    | 586ms            | i.MX 8M Plus |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=deeplabv3.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
-
 ## Download and run
 
-To create the TensorFlow Lite model fully quantized in int8 with float32 input and output, run:
+To create the TensorFlow Lite model fully quantized in int8 with float32 input and output, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
 
-    bash recipe.sh
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
 
 The TensorFlow Lite model file for i.MX 8M Plus is `deeplabv3.tflite`.
 

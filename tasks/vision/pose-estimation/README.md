@@ -1,6 +1,6 @@
 # Pose Estimation
 
-The goal of pose estimation is to detect the position and orientation of a person or object. In Human Pose Estimation, this is usually done with specific keypoints such as hands, head, legs, etc.
+The goal of pose estimation is to detect the position and orientation of a person, face, or object. In Human Pose Estimation, this is usually done with specific keypoints such as hands, head, legs, etc.
 
  ![pose estimation](./pose_demo.webp)
 
@@ -29,6 +29,11 @@ Thus, it can also be used for head pose estimation training.
 
 [Dataset description source](https://www.tensorflow.org/datasets/catalog/the300w_lp).
 
+### Internal Intel face landmark dataset
+
+As described in the [OpenVino Model Zoo](https://github.com/openvinotoolkit/open_model_zoo/tree/master/models/intel/facial-landmarks-35-adas-0002), this dataset is comprised of 1000 images from 300 different people with various face expressions.
+It is not publicly available.
+
 ## Metrics
 
 ### Keypoint mAP
@@ -41,10 +46,11 @@ The MAE is used to evaluate the average prediction error in regression tasks. In
 
 ## Model List
 
-Model name                     | Architecture | Backbone       | Training Dataset | Accuracy            | Input size | OPS    | Params  | INT8 Size |  Compatibility
----                            | ---          |     ---        | ---              | ---                 | ---        |  ---   | ---     |    ---    | ---
-[MoveNet](./movenet/README.md) | MoveNet      | MobileNetV2[3] | COCO[1] + Active | 57.4 (mAP int8)     | 192x192    |  N/A   | N/A     |  2.9M     | i.MX 8M Plus, i.MX 93
-[WHENet](./whenet/README.md)   | WHENet       | EfficientNetB0 | 300W-LP [4]      | 4.619 (MAE float32) | 224x224    | 781M   | 4.4M    |  5.0M     | i.MX 8M Plus, i.MX 93
+Model name                                                                 | Architecture | Backbone       | Training Dataset | Accuracy            | Input size | OPS    | Params  | INT8 Size |  Compatibility
+---                                                                        | ---          |     ---        | ---              | ---                 | ---        |  ---   | ---     |    ---    | ---
+[MoveNet](./movenet/README.md)                                             | MoveNet      | MobileNetV2[3] | COCO[1] + Active | 57.4 (mAP int8)     | 192x192    |  N/A   | N/A     |  2.9M     | i.MX 8M Plus, i.MX 93
+[WHENet](./whenet/README.md)                                               | WHENet       | EfficientNetB0 | 300W-LP [4]      | 4.619 (MAE float32) | 224x224    | 781M   | 4.4M    |  5.0M     | i.MX 8M Plus, i.MX 93
+[facial-landmarks-35-adas-0002](./facial-landmarks-35-adas-0002/README.md) | Custom CNN   | Custom         | Private          | 0.106 (MNE float32) | 60x60      | 42M    | 4.595M  |  4.7M     | i.MX 8M Plus, i.MX 93
 
 ## References
 

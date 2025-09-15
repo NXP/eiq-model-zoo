@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright 2023-2024 NXP
+# Copyright 2023-2025 NXP
 # SPDX-License-Identifier: MIT
 
 import cv2
@@ -21,7 +21,6 @@ def load_image(filename):
     orig_image = orig_image[100:228,100:228,:]
     image = cv2.cvtColor(orig_image, cv2.COLOR_BGR2RGB)
     image = cv2.resize(image, (128, 128))
-    image = image[..., ::-1]
     image = np.expand_dims(image, axis=0)
     image = (image - 127.0)/128.0
     return orig_image, image

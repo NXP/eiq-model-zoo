@@ -42,35 +42,11 @@ NB: The original model has dynamic shape, meaning that during the first step of 
 This model can be used for low-light enhancement on  images of all sizes.
 The weights chosen for this demo are the 'medium' variant, meaning that the model was trained on a 'medium' difficulty dataset. The user can choose to use the 'difficult' or 'easy' variant. This will change the performance of the model and the inference time.
 
-## Performance
-
-Here are performance figures evaluated on supported products (BSP LF6.1.1_1.0.0) for the 'medium' model with size 1920x1080 (Full HD resolution):
-
-Model   | Average latency | Platform     | Accelerator       | Command
----     | ---             | ---          | ---               | ---
-Int8    | 1952ms          | i.MX 8MP     |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.12.0/examples/benchmark_model --graph=sci.tflite
-Int8    | 1061ms          | i.MX 8MP     |   CPU (4 threads) | /usr/bin/tensorflow-lite-2.12.0/examples/benchmark_model --graph=sci.tflite --num_threads=4
-Int8    | 216ms           | i.MX 8MP     |   NPU             | /usr/bin/tensorflow-lite-2.12.0/examples/benchmark_model --graph=sci.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8    | 1300ms          | i.MX 93      |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.11.0/examples/benchmark_model --graph=sci.tflite
-Int8    | 1073ms          | i.MX 93      |   CPU (2 threads) | /usr/bin/tensorflow-lite-2.11.0/examples/benchmark_model --graph=sci.tflite --num_threads=2
-Int8    | 222ms           | i.MX 93      |   NPU             | /usr/bin/tensorflow-lite-2.11.0/examples/benchmark_model --graph=sci.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
-
-And for size 1280x720 (HD resolution):
-
-Model   | Average latency | Platform     | Accelerator       | Command
----     | ---             | ---          | ---               | ---
-Int8    | 658ms           | i.MX 8MP     |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.12.0/examples/benchmark_model --graph=sci.tflite
-Int8    | 465ms           | i.MX 8MP     |   CPU (4 threads) | /usr/bin/tensorflow-lite-2.12.0/examples/benchmark_model --graph=sci.tflite --num_threads=4
-Int8    | 133ms           | i.MX 8MP     |   NPU             | /usr/bin/tensorflow-lite-2.12.0/examples/benchmark_model --graph=sci.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8    | 563ms           | i.MX 93      |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.11.0/examples/benchmark_model --graph=sci.tflite
-Int8    | 467ms           | i.MX 93      |   CPU (2 threads) | /usr/bin/tensorflow-lite-2.11.0/examples/benchmark_model --graph=sci.tflite --num_threads=2
-Int8    | 110ms           | i.MX 93      |   NPU             | /usr/bin/tensorflow-lite-2.11.0/examples/benchmark_model --graph=sci.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
-
 ## Download and run
 
-To create the TensorFlow Lite model fully quantized in int8 with float32 input and float32 output, run:
+To create the TensorFlow Lite model fully quantized in int8 with float32 input and float32 output, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
 
-    bash recipe.sh
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
 
 The TensorFlow Lite model file for i.MX 8M Plus and i.MX 93 is `sci.tflite`.
 

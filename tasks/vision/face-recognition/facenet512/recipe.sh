@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2022-2024 NXP
+# Copyright 2022-2025 NXP
 # SPDX-License-Identifier: MIT
 
 set -e
@@ -9,8 +9,8 @@ source ./env/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 
-wget https://vis-www.cs.umass.edu/lfw/lfw.tgz -O lfw.tgz
-tar xzf lfw.tgz
+wget --no-check-certificate https://www.kaggle.com/api/v1/datasets/download/jessicali9530/lfw-dataset -O lfw.zip
+unzip lfw.zip
 
 mkdir -p ~/.deepface/weights
 
@@ -24,7 +24,7 @@ model = loadModel()
 
 def representative_dataset():
 
-    files = glob.glob('lfw/*/*jpg')
+    files = glob.glob('lfw-deepfunneled/lfw-deepfunneled/*/*jpg')
     random.shuffle(files)
 
     for filename in files[:100]:
@@ -49,10 +49,5 @@ tflite_model = converter.convert()
 open('facenet512_uint8.tflite', 'wb').write(tflite_model)
 "
 
-# install vela
-pip install git+https://github.com/nxp-imx/ethos-u-vela.git@lf-6.1.22-2.0.0
-
-vela --output-dir model_imx93 facenet512_uint8.tflite
-
 deactivate
-rm -rf lfw env lfw.tgz
+rm -rf lfw-deepfunneled env lfw.zip

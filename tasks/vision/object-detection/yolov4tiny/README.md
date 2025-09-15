@@ -53,25 +53,11 @@ It is not the most accurate model, but it is enough for many applications.
 We noticed that the model performs well for large objects but has issues will small objects.
 This is probably due to the fact that it only features two output levels instead of three for larger models.
 
-
-## Performance
-
-Here are performance figures evaluated on i.MX 8M Plus and i.MX 93 (BSP LF6.1.22_2.0.0):
-
-Model   | Average latency  | Platform     | Accelerator       | Command
----     | ---              | ---          | ---               | ---
-Int8    | 908ms            | i.MX 8M Plus |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=yolov4-tiny_416_quant.tflite
-Int8    | 363ms            | i.MX 8M Plus |   CPU (4 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=yolov4-tiny_416_quant.tflite --num_threads=4
-Int8    | 18.0ms           | i.MX 8M Plus |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=yolov4-tiny_416_quant.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8    | 404ms            | i.MX 93      |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=yolov4-tiny_416_quant.tflite
-Int8    | 299ms            | i.MX 93      |   CPU (2 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=yolov4-tiny_416_quant.tflite --num_threads=2
-Int8    | 21.1ms           | i.MX 93      |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=yolov4-tiny_416_quant_vela.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
-
 ## Download and run
 
-To create the TensorFlow Lite model fully quantized in int8 with int8 input and float32 output and the float32 model, run:
+To create the TensorFlow Lite model fully quantized in int8 with int8 input and float32 output and the float32 model, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
 
-    bash recipe.sh
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
 
 The TensorFlow Lite model file for i.MX 8M Plus and i.MX 93 CPU is `yolov4-tiny_416_quant.tflite`. The model for i.MX 93 NPU will be in `model_imx93`.
 

@@ -32,16 +32,16 @@ The float32 and int8 models have been tested on i.MX 8MP and i.MX 93 using bench
 
 The model has been trained and evaluated on the LFW dataset. It achieved a score of 99.65% according to [the source of the model](https://github.com/serengil/deepface/).
 
-We re-evaluated the model on [LFW aligned with deep funneling](https://vis-www.cs.umass.edu/lfw/lfw-deepfunneled.tgz) on the [pairsDevTest](https://vis-www.cs.umass.edu/lfw/pairsDevTest.txt) split:
+We re-evaluated the model on 3000 negative pairs and 3000 positive pairs [lfw.bin](https://github.com/deepinsight/insightface/tree/master/recognition/_datasets_) by targeting different FAR values:
 
-Model | Accuracy
----|---
-FaceNet512 Keras float32 | 97.5%
-FaceNet512 TensorFlow Lite int8 | 97.2%
+Model | Accuracy | TAR 
+------|----------|----
+FaceNet512 Keras float32 | 97.7%|97.5%@FAR=0.01 <br>82%@FAR=0.001 <br> 58%@FAR=0.0001
+FaceNet512 TensorFlow Lite int8 | 97.6%|96%@FAR=0.01 <br>81%@FAR=0.001 <br> 50%@FAR=0.0001
 
-The TensorFlow Lite model file for i.MX 8M Plus is `emotion_uint8_float32.tflite`. The file for i.MX 93 is output in the `model_imx93` directory.
+The TensorFlow Lite model file for i.MX 8M Plus and i.MX 93 is `emotion_uint8_float32.tflite`.
 
-The evaluation script is `evaluate.py`.
+The evaluation script is `evaluate.py`. The model can be evaluated by running:`bash evaluate.sh`.
 
 ## Conversion/Quantization
 
@@ -59,24 +59,11 @@ This model can be used for the following use cases:
 
 - Tracking a person by applying the model on each frame of a video.
 
-## Performance
-
-Here are performance figures evaluated on i.MX 8MP and i.MX 93 using BSP LF6.1.1_1.0.0:
-
-Model   | Average latency    | Platform | Accelerator       | Command
----     | ---                | ---      | ---               | ---
-Int8    | 333.32ms           | i.MX 8MP |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=facenet512_uint8.tflite
-Int8    | 97.37ms            | i.MX 8MP |   CPU (4 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=facenet512_uint8.tflite --num_threads=4
-Int8    | 10.01ms            | i.MX 8MP |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=facenet512_uint8.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8    | 124.45ms           | i.MX 93  |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=facenet512_uint8.tflite
-Int8    | 70.22ms            | i.MX 93  |   CPU (2 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=facenet512_uint8.tflite --num_threads=2
-Int8    | 10.39ms            | i.MX 93  |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=facenet512_uint8_vela.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
-
 ## Download and run
 
-To create the TensorFlow Lite model fully quantized in int8 with int8 input and float32 output, run:
+To create the TensorFlow Lite model fully quantized in int8 with int8 input and float32 output, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
 
-    bash recipe.sh
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
 
 An example of how to use the model is in `example.py`.
 

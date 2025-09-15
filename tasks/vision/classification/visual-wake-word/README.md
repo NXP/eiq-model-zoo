@@ -51,25 +51,13 @@ overall image size.
 
 Model is designed for tiny systems (microcontrollers).
 
-## Performance
-
-Here are performance figures evaluated on i.MX 8MP using BSP LF6.1.22_1.0.0 and performance results on MCX N947 evaluated using MCUXpresso SDK:
-
- Model | Average latency | Platform     | Accelerator     | Command                                                                                                                                                                         |
--------|-----------------|--------------|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
- Int8  | 3.716 ms        | i.MX 8M Plus | CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=/usr/bin/tensorflow-lite-2.10.0/examples/vww_96_int8.tflite                                                    |
- Int8  | 1.443 ms        | i.MX 8M Plus | CPU (4 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=/usr/bin/tensorflow-lite-2.10.0/examples/vww_96_int8.tflite --num_threads=4                                    |
- Int8  | 0.483 ms        | i.MX 8M Plus | NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=/usr/bin/tensorflow-lite-2.10.0/examples/vww_96_int8.tflite --external_delegate_path=/usr/lib/libvx_delegate.so |
- Int8  | 1.97 ms         | i.MX 93      | CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=vww_96_int8.tflite                                                                                             |
- Int8  | 1.38 ms         | i.MX 93      | CPU (2 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=vww_96_int8.tflite --num_threads=2                                                                             |
- Int8  | 0.214 ms        | i.MX 93      | NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=vww_96_int8.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so                                     |
- Int8  | 194.313 ms      | MCX N947     | CPU             | MCUXpresso SDK                                                                                                                                                                  |
- Int8  | 6.384 ms        | MCX N947     | NPU             | MCUXpresso SDK                                                                                                                                                                                |
-
 ## Download and run
 
-To download this model run `bash recipe.sh`. This will download original keras model (.h5), float tflite model and
-quantized integer model. File for the i.MX 93 will be prepared and placed into the `model_imx93` directory.
+To download this model follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
+
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
+
+This will download original keras model (.h5), float tflite model and quantized integer model. File for the i.MX 93 will be prepared and placed into the `model_imx93` directory.
 
 The TFLite model file for i.MX 8M Plus is `vww_96_int8.tflite`. An example of how to use the model is
 in `utils/example.py`.

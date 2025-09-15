@@ -42,24 +42,11 @@ The recipe script downloads the already quantised tflite file from [this](https:
 This model can be used for Super-Resolution on small sized images.
 The original model was trained on 128x128 images but it can still be used with images of different sizes.
 
-## Performance
-
-Here are performance figures evaluated on supported products (BSP LF6.1.1_1.0.0):
-
-Model   | Average latency | Platform     | Accelerator | Command
----     | ---             | ---          | ---         | ---
-Int8    | 1952ms         | i.MX 8MP     |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.12.0/examples/benchmark_model --graph=fsrgan.tflite
-Int8    | 1061ms         | i.MX 8MP     |   CPU (4 threads) | /usr/bin/tensorflow-lite-2.12.0/examples/benchmark_model --graph=fsrgan.tflite --num_threads=4
-Int8    | 216ms          | i.MX 8MP     |   NPU             | /usr/bin/tensorflow-lite-2.12.0/examples/benchmark_model --graph=fsrgan.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8    | 1300ms         | i.MX 93      |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.11.0/examples/benchmark_model --graph=fsrgan.tflite
-Int8    | 1073ms         | i.MX 93      |   CPU (2 threads) | /usr/bin/tensorflow-lite-2.11.0/examples/benchmark_model --graph=fsrgan.tflite --num_threads=2
-Int8    | 222ms          | i.MX 93      |   NPU             | /usr/bin/tensorflow-lite-2.11.0/examples/benchmark_model --graph=fsrgan.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
-
 ## Download and run
 
-To create the TensorFlow Lite model fully quantized in int8 with float32 input and float32 output, run:
+To create the TensorFlow Lite model fully quantized in int8 with float32 input and float32 output, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
 
-    bash recipe.sh
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
 
 The TensorFlow Lite model file for i.MX 8M Plus and i.MX 93 is `fsrgan.tflite`.
 

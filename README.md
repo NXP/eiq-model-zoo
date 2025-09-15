@@ -49,6 +49,16 @@ Multiple models may be proposed for the same task. Each model has its own inform
 ## Requirements
 
 The model creation recipes were tested under Ubuntu 20.04 with Python 3.8.
+Please use the provided Dockerfile in order to match this environment. Start by installing [Docker](https://www.docker.com/).
+
+Then, build the image for NXP model zoo:
+
+    docker build -t nxp-model-zoo .
+
+Finally, to run a model zoo recipe, navigate to the corresponding folder and run the following command:
+
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo /workspace/recipe.sh
+
 
 ## Legal information
 

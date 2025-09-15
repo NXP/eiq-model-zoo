@@ -54,25 +54,11 @@ classification accuracy on 4-class Motor Imagery dataset.
 
 As of BSP LF6.1.36_2.1.0, model is not possible to accelerate on i.MX 8M Plus NPU. 
 
-## Performance
-
-Here are performance figures evaluated on i.MX 8MP and i.MX 93 using BSP LF6.1.36_2.1.0:
-
- Model | Average latency | Platform     | Accelerator     | Command                                                                                                                                         
--------|-----------------|--------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------
- Int8  | 23.0162 ms      | i.MX 8M Plus | CPU (1 thread)  | benchmark_model --graph=eegTCNet_quant_int8.tflite                                                     
- Int8  | 19.2728 ms      | i.MX 8M Plus | CPU (4 threads) | benchmark_model --graph=eegTCNet_quant_int8.tflite --num_threads=4                                     
- Int8  | -               | i.MX 8M Plus | NPU             | benchmark_model --graph=eegTCNet_quant_int8.tflite --external_delegate_path=libvx_delegate.so 
- Int8  | 15.025 ms       | i.MX 93      | CPU (1 thread)  | benchmark_model --graph=eegTCNet_quant_int8.tflite                                                     
- Int8  | 13.884 ms       | i.MX 93      | CPU (2 threads) | benchmark_model --graph=eegTCNet_quant_int8.tflite --num_threads=2                                                    
- Int8  | 15.355 ms       | i.MX 93      | NPU             | benchmark_model --graph=eegTCNet_quant_int8.tflite --external_delegate_path=libethosu_delegate.so                                                    
-
-**Note**: Refer to the [User Guide](https://www.nxp.com/docs/en/user-guide/IMX-MACHINE-LEARNING-UG.pdf), to find out where benchmark_model, libvx_delegate and libethosu_delegate are located.
-
 ## Download and run
 
-0. Download and install Python 3.7.4 : https://www.python.org/downloads/release/python-374/
-1. run ```bash recipe.sh```recipe.sh to download required files, prepare dataset and quantize model
+Follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
+
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh 
 
 The TFLite model file for i.MX 8M Plus and i.MX 93 is `.tflite`. 
 

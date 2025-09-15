@@ -49,27 +49,13 @@ This model can be used for image classification applications.
 
 As of BSP LF6.1.36_2.1.0, Ethos-U delegate does not support some operations in the model. Therefore, model cannot be accelerated on i.MX 93 NPU.
 
-## Performance
-
-Here are performance figures evaluated on i.MX 8MP and i.MX 93 using BSP LF6.1.36_2.1.0:
-
-Model | Average latency | Platform     | Accelerator     | Command
-------|-----------------|--------------|-----------------|---------------------------------------------------------
-Int8  | 113.68 ms       | i.MX 8M Plus | CPU (1 thread)  | benchmark_model --graph=mnasnet-a1-075_quant_int8.tflite
-Int8  | 43.60 ms        | i.MX 8M Plus | CPU (4 threads) | benchmark_model --graph=mnasnet-a1-075_quant_int8.tflite --num_threads=4
-Int8  | 12.95 ms        | i.MX 8M Plus | NPU             | benchmark_model --graph=mnasnet-a1-075_quant_int8.tflite --external_delegate_path=libvx_delegate.so
-Int8  | 66.91 ms        | i.MX 93      | CPU (1 thread)  | benchmark_model --graph=mnasnet-a1-075_quant_int8.tflite
-Int8  | 45.71 ms        | i.MX 93      | CPU (2 threads) | benchmark_model --graph=mnasnet-a1-075_quant_int8.tflite --num_threads=2
-Int8  | -               | i.MX 93      | NPU             | benchmark_model --graph=mnasnet-a1-075_quant_int8.tflite --external_delegate_path=libethosu_delegate.so
-
-Refer to the [User Guide](https://www.nxp.com/docs/en/user-guide/IMX-MACHINE-LEARNING-UG.pdf) to locate benchmark model and external delegates paths.
-
-
 ## Download and run
 
 ### How to build models
 
-1. Download and convert model by running `recipe.sh`.
+Follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
+
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
 
 ### How to run test inference
 

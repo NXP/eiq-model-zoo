@@ -40,24 +40,11 @@ The model is located in the source directory which contains original keras model
 
 Goal of the model is to classify input image into 10 classes. Classes are listed in the [Labels](#labels) section.
 
-## Performance
-
-Here are performance figures evaluated on i.MX 8MP using BSP LF6.1.22_1.0.0 and performance results on MCX N947 evaluated using MCUXpresso SDK, with SDK version 2.13.0 MCXN10 PRC, Toolchain MCUXpresso IDE 11.7.1 and LibC NewlibNano (nohost)::
-
- Model | Average latency | Platform     | Accelerator     | Command                                                                                                                                                                                     
--------|-----------------|--------------|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
- Int8  | 3.83 ms         | i.MX 8M Plus | CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=/usr/bin/tensorflow-lite-2.10.0/examples/pretrainedResnet_quant.tflite                                                     |
- Int8  | 1.43 ms         | i.MX 8M Plus | CPU (4 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=/usr/bin/tensorflow-lite-2.10.0/examples/pretrainedResnet_quant.tflite --num_threads=4                                     |
- Int8  | 0.22 ms         | i.MX 8M Plus | NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=/usr/bin/tensorflow-lite-2.10.0/examples/pretrainedResnet_quant.tflite --external_delegate_path=/usr/lib/libvx_delegate.so |
- Int8  | 1.65 ms         | i.MX 93      | CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=pretrainedResnet_quant.tflite                                                                                              |
- Int8  | 1.65 ms         | i.MX 93      | CPU (2 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=pretrainedResnet_quant.tflite --num_threads=2                                                                              |
- Int8  | 0.33ms          | i.MX 93      | NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=pretrainedResnet_quant.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so                                      |
- Int8  | 266.67 ms       | MCX N947     | CPU             | MCUXpresso SDK                                                                                                                                                                              |
- Int8  | 6.31 ms         | MCX N947     | NPU             | MCUXpresso SDK                                                                                                                                                                              
-
 ## Download and run
 
-To download original keras model, tflite model and quantized tflite model, run `bash recipe.sh`.
+To download original keras model, tflite model and quantized tflite model, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
+
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
 
 The TFLite model file for i.MX 8M Plus and MCX N947 is `pretrainedResnet_quant.tflite`. Converted model for i.MX 93 is placed into `model_imx93` directory.
 

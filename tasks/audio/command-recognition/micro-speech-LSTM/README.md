@@ -53,25 +53,11 @@ the script for more details. It generates tflite float model and quantized int8 
 This model can be used for classification applications with very limited set of classes. Since its use-case is limited,
 it should not be trusted for critical scenarios.
 
-## Performance
-
-Here are performance figures evaluated on i.MX 8MP using BSP LF6.1.1_1.0.0 and on i.MX 93 using BSP LF6.1.36_2.1.0:
-
- Model | Average latency | Platform     | Accelerator     | Command                                                                             
--------|-----------------|--------------|-----------------|-------------------------------------------------------------------------------------
- Int8  | 4.919 ms        | i.MX 8M Plus | CPU (1 thread)  | benchmark_model --graph=[MODEL_NAME]                                                
- Int8  | 4.915 ms        | i.MX 8M Plus | CPU (4 threads) | benchmark_model --graph=[MODEL_NAME] --num_threads=4                                
- Int8  | 1.911 ms        | i.MX 8M Plus | NPU             | benchmark_model --graph=[MODEL_NAME] --external_delegate_path=libvx_delegate.so     
- Int8  | 5.203 ms        | i.MX 93      | CPU (1 threads) | benchmark_model --graph=[MODEL_NAME]                                                
- Int8  | 5.212 ms        | i.MX 93      | CPU (2 threads) | benchmark_model --graph=[MODEL_NAME] --num_threads=2                                
- Int8  | 1.461 ms        | i.MX 93      | NPU             | benchmark_model --graph=[MODEL_NAME] --external_delegate_path=libethosu_delegate.so 
-
-**Note**: Refer to the [User Guide](https://www.nxp.com/docs/en/user-guide/IMX-MACHINE-LEARNING-UG.pdf), to find out
-where benchmark_model, libvx_delegate and libethosu_delegate are located.
-
 ## Download and run
 
-To create the TFLite model fully quantized in int8 with int8 input and int8 output, run `bash recipe.sh`.
+To create the TFLite model fully quantized in int8 with int8 input and int8 output, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
+
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh run `bash recipe.sh`.
 
 The TFLite model file for i.MX 8M Plus and i.MX 93 is `microspeech-lstm_quant_int8.tflite`.
 

@@ -49,25 +49,11 @@ The conversion script performs this conversion and outputs the int8 quantized mo
 This model can be used for fast object detection on 300x300 pixel images.
 It is not the most accurate model, but it is enough for many applications.
 
-
-## Performance
-
-Here are performance figures evaluated on i.MX 8M Plus and i.MX 93 (BSP LF6.1.22_2.0.0):
-
-Model   | Average latency  | Platform     | Accelerator       | Command
----     | ---              | ---          | ---               | ---
-Int8    | 252ms            | i.MX 8M Plus |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=ssdlite-mobilenetv2.tflite
-Int8    | 70.9ms           | i.MX 8M Plus |   CPU (4 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=ssdlite-mobilenetv2.tflite --num_threads=4
-Int8    | 17.0ms           | i.MX 8M Plus |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=ssdlite-mobilenetv2.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8    | 104ms            | i.MX 93      |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=ssdlite-mobilenetv2.tflite
-Int8    | 61.1ms           | i.MX 93      |   CPU (2 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=ssdlite-mobilenetv2.tflite --num_threads=2
-Int8    | 10.0ms           | i.MX 93      |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=ssdlite-mobilenetv2_vela.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
-
 ## Download and run
 
-To create the TensorFlow Lite model fully quantized in int8 with float32 input and output, run:
+To create the TensorFlow Lite model fully quantized in int8 with float32 input and output, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
 
-    bash recipe.sh
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
 
 The TensorFlow Lite model file for i.MX 8M Plus and i.MX 93 CPU is `ssdlite-mobilenetv2.tflite`. The model for i.MX 93 NPU will be in `model_imx93`.
 

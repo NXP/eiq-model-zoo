@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2022-2024 NXP
+# Copyright 2022-2025 NXP
 # SPDX-License-Identifier: MIT
 
 set -e
@@ -19,7 +19,7 @@ pip install wheel
 pip install -r ../requirements_pytorch_to_onnx.txt
 pip install gdown
 
-gdown 1rMHkD30jacjRpslmQja5jls86xd0YssR
+gdown --no-check-certificate 1rMHkD30jacjRpslmQja5jls86xd0YssR
 
 pip install -e .
 

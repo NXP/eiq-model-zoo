@@ -43,24 +43,11 @@ The quantization procedure can be found in `recipe.sh`.
 
 This model can be used for real-time stereo depth estimation on mobile devices. However it is not as accurate as the state-of-the-art models that require faster hardware.
 
-## Performance
-
-Here are performance figures evaluated on i.MX 8M Plus (BSP L6.1.36_2.1.0):
-
-Model   | Average latency  | Platform     | Accelerator       | Command
----     | ---              | ---          | ---               | ---
-Int8    | 1285ms           | i.MX 8M Plus |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.11.1/examples/benchmark_model --graph=midas_2_1_small_int8.tflite
-Int8    | 418ms            | i.MX 8M Plus |   CPU (4 threads) | /usr/bin/tensorflow-lite-2.11.1/examples/benchmark_model --graph=midas_2_1_small_int8.tflite --num_threads=4
-Int8    | 32ms             | i.MX 8M Plus |   NPU             | /usr/bin/tensorflow-lite-2.11.1/examples/benchmark_model --graph=midas_2_1_small_int8.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8    | 543ms            | i.MX 93      |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.11.1/examples/benchmark_model --graph=midas_2_1_small_int8.tflite
-Int8    | 346ms            | i.MX 93      |   CPU (2 threads) | /usr/bin/tensorflow-lite-2.11.1/examples/benchmark_model --graph=midas_2_1_small_int8.tflite --num_threads=2
-Int8    | 32ms             | i.MX 93      |   NPU             | /usr/bin/tensorflow-lite-2.11.1/examples/benchmark_model --graph=midas_2_1_small_int8_vela.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
-
 ## Download and run
 
-To create the TensorFlow Lite model fully quantized in int8 with float32 input and output, run:
+To create the TensorFlow Lite model fully quantized in int8 with float32 input and output, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
 
-    bash recipe.sh
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
 
 The TensorFlow Lite model file for i.MX 8M Plus is `midas_2_1_small_int8.tflite`.
 The non-quantized model will also be available as `midas_2_1_small_float32.tflite`.

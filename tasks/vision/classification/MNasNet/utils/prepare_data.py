@@ -1,3 +1,6 @@
+# Copyright 2025 NXP
+# SPDX-License-Identifier: MIT
+
 import tensorflow as tf
 import numpy as np
 import tensorflow_datasets as tfds

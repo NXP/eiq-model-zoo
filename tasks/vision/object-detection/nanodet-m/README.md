@@ -51,25 +51,11 @@ The conversion script performs this conversion and outputs the int8 quantized mo
 This model can be used for very fast medium to large object detection on 320x320 pixel images.
 It is not a very accurate model and should only be used for basic use cases.
 
-## Performance
-
-Here are performance figures evaluated on i.MX 8M Plus (BSP LF6.1.1_1.0.0), i.MX RT1170 and i.MX RT1050:
-
-Model   | Average latency  | Platform     | Accelerator       | Command
----     | ---              | ---          | ---               | ---
-Int8    | 92.38ms          | i.MX 8M Plus |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=nanodet_m_0.5x.tflite
-Int8    | 68.62ms          | i.MX 8M Plus |   CPU (4 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=nanodet_m_0.5x.tflite --num_threads=4
-Int8    | 12.14ms          | i.MX 8M Plus |   NPU             | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=nanodet_m_0.5x.tflite  --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8    | 78.06ms          | i.MX 93      |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=nanodet_m_0.5x.tflite
-Int8    | 73.01ms          | i.MX 93      |   CPU (2 threads) | /usr/bin/tensorflow-lite-2.10.0/examples/benchmark_model --graph=nanodet_m_0.5x.tflite --num_threads=2
-Int8    | 615ms            | i.MX RT1170  |   CPU             | Used with TensorFlow Lite micro
-Int8    | 771ms            | i.MX RT1050  |   CPU             | Used with TensorFlow Lite micro
-
 ## Download and run
 
-To create the TensorFlow Lite model fully quantized in int8 with int8 input and output, run:
+To create the TensorFlow Lite model fully quantized in int8 with int8 input and output, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
 
-    bash recipe.sh
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
 
 The TensorFlow Lite model file for i.MX 8M Plus and i.MX RT 1170/1050 is `nanodet_m_0.5x.tflite`.
 

@@ -49,18 +49,11 @@ The model has been trained and evaluated on the Pascal VOC 2012 dataset [3], onl
 
 The model can be used for person detection on MCU platforms.
 
-## Performance
-
-Below are the performance figures of the model evaluated on i.MX RT 1170 EVK using TensorFlow Lite Micro:
-
-| Model | Average latency |     Platform     |     Accelerator      | Command                                                                                        |
-|:-----:|:---------------:|:----------------:|:--------------------:|------------------------------------------------------------------------------------------------|
-| int8  |      200 ms      | i.MX RT 1170 EVK | CPU (1 GHz Cortex M7) | TFLite Micro                                                                                           |
-
-
 ## Run
 
 > ***Note :*** This has been tested using Python3.8 on Ubuntu 20.04.6 LTS.
+
+Follow the top-level README instructions to install Docker and build the Docker image corresponding to that environment.
 
 This guide is written for Linux.
 

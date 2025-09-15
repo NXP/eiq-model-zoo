@@ -53,26 +53,13 @@ The model is downloaded directly as an int8 quantized model. The accuracy of the
 
 This model can be used for classification applications. For better accuracy, consider using the larger variants. EfficientNet-lite4 offers 80.2% accuracy.
 
-## Performance
-
-Here are performance figures evaluated on i.MX 8MP and i.MX 93 using BSP LF6.1.55-2.2.0:
-
-Model | Average latency | Platform     | Accelerator     | Command
-------|-----------------|--------------|-----------------|---------------------------------------------------------
-Int8  | 156.68 ms       | i.MX 8M Plus | CPU (1 thread)  | benchmark_model --graph=efficientnet-lite0-int8.tflite
-Int8  | 42.35 ms        | i.MX 8M Plus | CPU (4 threads) | benchmark_model --graph=efficientnet-lite0-int8.tflite --num_threads=4
-Int8  | 7.32 ms         | i.MX 8M Plus | NPU             | benchmark_model --graph=efficientnet-lite0-int8.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8  | 80.4 ms         | i.MX 93      | CPU (1 thread)  | benchmark_model --graph=efficientnet-lite0-int8.tflite
-Int8  | 45.0 ms         | i.MX 93      | CPU (2 threads) | benchmark_model --graph=efficientnet-lite0-int8.tflite --num_threads=2
-Int8  | 4.57 ms         | i.MX 93      | NPU             | benchmark_model --graph=efficientnet-lite0-int8.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
-
-Note: Refer to the [User Guide](https://www.nxp.com/docs/en/user-guide/IMX-MACHINE-LEARNING-UG.pdf), to find out where benchmark_model, libvx_delegate and libethosu_delegate are located.
-
 ## Download and run
 
 ### How to run
 
-To create the TFLite model fully quantized in int8 with int8 input and int8 output, run `bash recipe.sh`.
+To create the TFLite model fully quantized in int8 with int8 input and int8 output, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
+
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
 
 The TFLite model file for i.MX 8M Plus and for i.MX 93 is `efficientnet-lite0-int8.tflite`. 
 

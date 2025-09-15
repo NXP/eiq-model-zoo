@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2022-2024 NXP
+# Copyright 2022-2025 NXP
 # SPDX-License-Identifier: MIT
 
 set -e
@@ -11,16 +11,16 @@ cd Ultra-Light-Fast-Generic-Face-Detector-1MB || exit
 git checkout dffdddd
 git apply ../slim.patch
 
-# Download widerface test set for quantization calibration
-wget https://huggingface.co/datasets/wider_face/resolve/main/data/WIDER_test.zip
-unzip WIDER_test.zip
-rm WIDER_test.zip
-
 # Install requirements in virtual env
 python3.8 -m venv env
 source ./env/bin/activate
 pip install --upgrade pip
 pip install -r ../requirements_tf.txt
+
+# Download widerface test set for quantization calibration
+gdown 1HIfDbVEWKmsYKJZm4lchTBDLW5N7dY5T -O WIDER_test.zip --no-check-certificate
+unzip WIDER_test.zip
+rm WIDER_test.zip
 
 # Generate tensorflow weights
 (
@@ -61,8 +61,8 @@ def main():
 
     converter.representative_dataset = representative_dataset
 
-    converter.inference_input_type = tf.uint8 
-    converter.inference_output_type = tf.float32 
+    converter.inference_input_type = tf.uint8
+    converter.inference_output_type = tf.float32
 
     tflite_model = converter.convert()
     open(OUTPUT_TF_FILE_NAME, 'wb').write(tflite_model)
@@ -75,7 +75,7 @@ def main():
     converter.representative_dataset = representative_dataset
 
     converter.inference_input_type = tf.int8
-    converter.inference_output_type = tf.int8 
+    converter.inference_output_type = tf.int8
 
     tflite_model = converter.convert()
     open(OUTPUT_TF_FILE_NAME_INT8, 'wb').write(tflite_model)

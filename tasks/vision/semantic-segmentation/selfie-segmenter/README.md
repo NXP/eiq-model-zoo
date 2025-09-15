@@ -81,42 +81,12 @@ there are multiple people across different scales. The model should not be used 
 identity recognition. For more information, please refer to the
 [model card](https://storage.googleapis.com/mediapipe-assets/Model%20Card%20MediaPipe%20Selfie%20Segmentation.pdf).
 
-## Performance
-
-Below is the performance evaluation on i.MX 8M Plus and i.MX 93 targets using BSP LF6.1.36_2.1.0:
-
-### General model's performance
-
-Model | Average latency | Platform  | Accelerator       | Command
----   | ---             | ---       | ---               | ---
-Int8  | 57.49 ms        | i.MX 8MP  | CPU (1 thread)    | ./benchmark_model --graph=selfie_segmenter_int8.tflite
-Int8  | 31.82 ms        | i.MX 8MP  | CPU (4 threads)   | ./benchmark_model --graph=selfie_segmenter_int8.tflite --num_threads=4
-Int8  |  7.68 ms        | i.MX 8MP  | NPU               | ./benchmark_model --graph=selfie_segmenter_int8.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8  | 41.72 ms        | i.MX 93   | CPU (1 thread)    | ./benchmark_model --graph=selfie_segmenter_int8.tflite
-Int8  | 32.89 ms        | i.MX 93   | CPU (2 threads)   | ./benchmark_model --graph=selfie_segmenter_int8.tflite --num_threads=2
-Int8  | 16.66 ms        | i.MX 93   | NPU               | ./benchmark_model --graph=selfie_segmenter_int8_vela.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
-
-### Landscape model's performance
-
-Model | Average latency | Platform  | Accelerator       | Command
----   | ---             | ---       | ---               | ---
-Int8  | 31.29 ms        | i.MX 8MP  | CPU (1 thread)    | ./benchmark_model --graph=selfie_segmenter_landscape_int8.tflite
-Int8  | 17.39 ms        | i.MX 8MP  | CPU (4 threads)   | ./benchmark_model --graph=selfie_segmenter_landscape_int8.tflite --num_threads=4
-Int8  |  4.14 ms        | i.MX 8MP  | NPU               | ./benchmark_model --graph=selfie_segmenter_landscape_int8.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8  | 22.65 ms        | i.MX 93   | CPU (1 thread)    | ./benchmark_model --graph=selfie_segmenter_landscape_int8.tflite
-Int8  | 18.31 ms        | i.MX 93   | CPU (2 threads)   | ./benchmark_model --graph=selfie_segmenter_landscape_int8.tflite --num_threads=2
-Int8  |  6.06 ms        | i.MX 93   | NPU               | ./benchmark_model --graph=selfie_segmenter_landscape_int8_vela.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
-
-**Note:**  BSP >= LF6.1.36_2.1.0 supports Ethos-U Delegate on the i.MX93, which implements vela compilation online. If using an older BSP version, please compile the quantized TFLite model with Vela compiler before being used.
-
 ## Download and run
 
 To export the TensorFlow Lite general version model, fully quantized in INT8 with FLOAT32 input and FLOAT32 output,
-run:
+follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
 
-```bash
-bash recipe.sh
-```
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
 
 To generate the landscape version, run:
 

@@ -14,7 +14,7 @@ filelock==3.12.4
 flatbuffers==2.0.7
 fonttools==4.43.1
 gast==0.4.0
-gdown==4.7.1
+gdown==5.2.0
 google-auth==2.23.3
 google-auth-oauthlib==0.4.6
 google-pasta==0.2.0

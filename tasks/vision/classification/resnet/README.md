@@ -41,25 +41,11 @@ The model is accessed through keras API and converted and quantized into TensorF
 
 This model can be used for image classification applications. Since its accuracy is relatively low, it should not be trusted for critical scenarios.
 
-## Performance
-
-Here are performance figures evaluated on i.MX 8MP and i.MX 93  using BSP LF6.1.36_2.1.0:
-
-Model   | Average latency | Platform     | Accelerator     | Command
----     |-----------------|--------------|-----------------| ---
-Int8    | 836 ms          | i.MX 8M Plus | CPU (1 thread)  | benchmark_model --graph=resnet50_int8.tflite
-Int8    | 259 ms          | i.MX 8M Plus | CPU (4 threads) | benchmark_model --graph=resnet50_int8.tflite --num_threads=4
-Int8    | 25 ms           | i.MX 8M Plus | NPU             | benchmark_model --graph=resnet50_int8.tflite--external_delegate_path=libvx_delegate.so
-Int8    | 303 ms          | i.MX 93      | CPU (1 thread)  | benchmark_model --graph=resnet50_int8.tflite
-Int8    | 194 ms          | i.MX 93      | CPU (2 threads) | benchmark_model --graph=resnet50_int8.tflite --num_threads=2
-Int8    | 28 ms           | i.MX 93      | NPU             | benchmark_model --graph=resnet50_int8.tflite --external_delegate_path=libethosu_delegate.so
-
-Note: Refer to the [User Guide](https://www.nxp.com/docs/en/user-guide/IMX-MACHINE-LEARNING-UG.pdf), to find out where benchmark_model, libvx_delegate and libethosu_delegate are located.
-
-
 ## Download and run
 
-To create the TFLite model fully quantized in int8 with int8 input and int8 output, run `bash recipe.sh`.
+To create the TFLite model fully quantized in int8 with int8 input and int8 output, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
+
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
 
 The TFLite model file for i.MX 8M Plus and i.MX 93 is `.tflite`.
 

@@ -51,24 +51,11 @@ The `export_model.py` conversion script performs this conversion and outputs the
 This model can be used for object detection on 512x512 pixel images.
 It can also be used for other resolutions for faster inference (see `recipe.sh`).
 
-## Performance
-
-Here are performance figures evaluated on i.MX 8M Plus and i.MX 93 (BSP LF6.1.22_2.0.0):
-
-Model   | Average latency  | Platform     | Accelerator       | Command
----     | ---              | ---          | ---               | ---
-Int8    | 895ms            | i.MX 8M Plus |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.12.0/examples/benchmark_model --graph=centernet.tflite
-Int8    | 298ms            | i.MX 8M Plus |   CPU (4 threads) | /usr/bin/tensorflow-lite-2.12.0/examples/benchmark_model --graph=centernet.tflite --num_threads=4
-Int8    | 100ms            | i.MX 8M Plus |   NPU             | /usr/bin/tensorflow-lite-2.12.0/examples/benchmark_model --graph=centernet.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8    | 443ms            | i.MX 93      |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.11.0/examples/benchmark_model --graph=centernet.tflite
-Int8    | 276ms            | i.MX 93      |   CPU (2 threads) | /usr/bin/tensorflow-lite-2.11.0/examples/benchmark_model --graph=centernet.tflite --num_threads=2
-Int8    | 54.2ms           | i.MX 93      |   NPU             | /usr/bin/tensorflow-lite-2.11.0/examples/benchmark_model --graph=centernet.tflite --external_delegate_path=/usr/lib/libethosu_delegate.so
-
 ## Download and run
 
-To create the TensorFlow Lite model fully quantized in int8 with int8 input and float32 output and the float32 model, run:
+To create the TensorFlow Lite model fully quantized in int8 with int8 input and float32 output and the float32 model, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
 
-    bash recipe.sh
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
 
 The TensorFlow Lite model file for i.MX 8M Plus and i.MX 93 CPU is `centernet.tflite`.
 

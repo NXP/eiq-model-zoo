@@ -76,8 +76,11 @@ SDK version 2.13.0 MCXN10 PRC, Toolchain MCUXpresso IDE 11.7.1 and LibC NewlibNa
 
 ## Download and run
 
-To create the TFLite model fully quantized in int8 with int8 input and float32 output, run `bash recipe.sh`. Original
-dataset will be downloaded too.
+To create the TFLite model fully quantized in int8 with int8 input and float32 output, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
+
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh 
+
+Original dataset will be downloaded too.
 
 The TFLite model file for i.MX 8M Plus, i.MX 93 and MCX N947 is `ad01_int8.tflite`. 
 

@@ -48,28 +48,11 @@ for information on the quantization procedure that was used.
 This model can be used for speech command recognition applications. It was trained on the limited vocabulary (
 see [Labels](#labels)), so its use case is also limited.
 
-## Performance
-
-Here are performance figures evaluated on i.MX 8MP using BSP LF6.1.1_1.0.0 and i.MX93 using BSP LF6.1.36_2.1.0 and on
-MCX N947 using MCUXpresso SDK, with
-SDK version 2.13.0 MCXN10 PRC, Toolchain MCUXpresso IDE 11.7.1 and LibC NewlibNano (nohost):
-
- Model | Average latency | Platform     | Accelerator     | Command                                                                                                                                   
--------|-----------------|--------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------
- Int8  | 0.938 ms        | i.MX 8M Plus | CPU (1 thread)  | benchmark_model --graph=kws_ref_model.tflite                                                     
- Int8  | 0.383 ms        | i.MX 8M Plus | CPU (4 threads) | benchmark_model --graph=kws_ref_model.tflite --num_threads=4                                     
- Int8  | 0.182 ms        | i.MX 8M Plus | NPU             | benchmark_model --graph=kws_ref_model.tflite --external_delegate_path=libvx_delegate.so 
- Int8  | 0.440 ms        | i.MX 93      | CPU (1 thread)  | benchmark_model --graph=kws_ref_model.tflite                                                     
- Int8  | 0.321 ms        | i.MX 93      | CPU (2 threads) | benchmark_model --graph=kws_ref_model.tflite --num_threads=2                                         
- Int8  | 0.409 ms        | i.MX 93      | NPU             | benchmark_model --graph=kws_ref_model_vela.tflite --external_delegate_path=libvx_delegate.so 
- Int8  | 62 ms           | MCX N947     | CPU             | MCUXpresso SDK                                                                                                                            |
- Int8  | 3.329 ms        | MCX N947     | NPU             | MCUXpresso SDK                                                                                                                            
-
-**Note**: Refer to the [User Guide](https://www.nxp.com/docs/en/user-guide/IMX-MACHINE-LEARNING-UG.pdf), to find out where benchmark_model, libvx_delegate and libethosu_delegate are located.
-
 ## Download and run
 
-To create the TFLite model fully quantized in int8 with int8 input and int8 output, run `bash recipe.sh`.
+To create the TFLite model fully quantized in int8 with int8 input and int8 output, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
+
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh 
 
 The TFLite model file for i.MX 8M Plus, i.MX 93 and MCX N947 is `.tflite`.  
 

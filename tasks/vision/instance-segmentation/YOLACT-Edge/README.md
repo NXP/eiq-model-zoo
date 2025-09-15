@@ -46,24 +46,11 @@ The conversion script performs this conversion and outputs the quantized model.
 
 This model obtains good accuracy figures and is quite lightweight. However, the runtime on CPU is still quite high as it was conceived for real-time usage with high-performance GPUs.
 
-## Performance
-
-Here are performance figures evaluated on i.MX 8M Plus and i.MX 93 (BSP LF6.1.36_2.1.0):
-
-Model   | Average latency  | Platform     | Accelerator       | Command
----     | ---              | ---          | ---               | ---
-Int8    | 7.29s            | i.MX 8M Plus |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.12.1/examples/benchmark_model --graph=YOLACT-Edge.tflite
-Int8    | 2.19s            | i.MX 8M Plus |   CPU (4 threads) | /usr/bin/tensorflow-lite-2.12.1/examples/benchmark_model --graph=YOLACT-Edge.tflite --num_threads=4
-Int8    | 200ms            | i.MX 8M Plus |   NPU             | /usr/bin/tensorflow-lite-2.12.1/examples/benchmark_model --graph=YOLACT-Edge.tflite --external_delegate_path=/usr/lib/libvx_delegate.so
-Int8    | 2.56s            | i.MX 93      |   CPU (1 thread)  | /usr/bin/tensorflow-lite-2.11.1/examples/benchmark_model --graph=YOLACT-Edge.tflite
-Int8    | 1.98s            | i.MX 93      |   CPU (2 threads) | /usr/bin/tensorflow-lite-2.11.1/examples/benchmark_model --graph=YOLACT-Edge.tflite --num_threads=2
-Int8    | 360ms            | i.MX 93      |   NPU             | /usr/bin/tensorflow-lite-2.11.1/examples/benchmark_model --graph=YOLACT-Edge.tflite --external_delegate_path=libethosu_delegate.so
-
 ## Download and run
 
-To create the TensorFlow Lite model fully quantized in int8 with int8 input and float32 output, run:
+To create the TensorFlow Lite model fully quantized in int8 with int8 input and float32 output, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
 
-    bash recipe.sh
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
 
 The TensorFlow Lite model file for i.MX 8M Plus and i.MX 93 is `YOLACT-Edge.tflite`.
 

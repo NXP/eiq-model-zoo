@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # SPDX-License-Identifier: MIT
-# Copyright 2023-2024 NXP
+# Copyright 2023-2025 NXP
 
 set -e
 
@@ -23,18 +23,23 @@ wget https://github.com/PINTO0309/tflite2tensorflow/releases/download/${APPVER}/
 pip3 install --force-reinstall tensorflow-${TENSORFLOWVER}-cp38-none-linux_x86_64.whl \
   && rm tensorflow-${TENSORFLOWVER}-cp38-none-linux_x86_64.whl
 
-wget https://github.com/PINTO0309/tflite2tensorflow/raw/main/schema/schema.fbs
+wget https://github.com/PINTO0309/tflite2tensorflow/raw/main/schema/schema.fbs -O schema.fbs
 
-git clone -b v2.0.8 https://github.com/google/flatbuffers.git
-(
-cd flatbuffers && mkdir build && cd build
-cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
-make -j$(nproc)
-)
+if [ ! -d "flatbuffers" ]; then
+  git clone -b v2.0.8 https://github.com/google/flatbuffers.git
+  (
+    cd flatbuffers && mkdir build && cd build
+    cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
+    make -j$(nproc)
+  )
+fi
 
 pip install -r requirements.txt
 
-wget https://tfhub.dev/intel/lite-model/midas/v2_1_small/1/lite/1?lite-format=tflite -O midas_2_1_small_float32.tflite
+wget --no-check-certificate https://tfhub.dev/intel/lite-model/midas/v2_1_small/1/lite/1?lite-format=tflite -O midas_2_1_small_float32.tflite
+
+mkdir -p sample_npy
+gdown  1z-K0KZCK3JBH9hXFuBTmIM4jaMPOubGN -O sample_npy/calibration_data_img_sample.npy --no-check-certificate
 
 tflite2tensorflow \
   --model_path midas_2_1_small_float32.tflite \

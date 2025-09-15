@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Copyright 2023-2024 NXP
+# Copyright 2023-2025 NXP
 # SPDX-License-Identifier: MIT
 
 set -e
 
-wget https://tfhub.dev/google/lite-model/movenet/singlepose/lightning/tflite/int8/4?lite-format=tflite -O movenet.tflite
+wget --no-check-certificate https://tfhub.dev/google/lite-model/movenet/singlepose/lightning/tflite/int8/4?lite-format=tflite -O movenet.tflite
 
 # Install requirements in virtual env
 python3.8 -m venv env

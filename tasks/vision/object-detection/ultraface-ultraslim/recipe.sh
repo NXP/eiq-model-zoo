@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2023-2024 NXP
+# Copyright 2023-2025 NXP
 # SPDX-License-Identifier: MIT
 
 set -e
@@ -11,16 +11,16 @@ cd Ultra-Light-Fast-Generic-Face-Detector-1MB || exit
 git checkout dffdddd
 git apply ../ultraslim.patch
 
-# Download widerface test set for quantization calibration
-wget https://huggingface.co/datasets/wider_face/resolve/main/data/WIDER_test.zip
-unzip WIDER_test.zip
-rm WIDER_test.zip
-
 # Install requirements in virtual env
 python3.8 -m venv env
 source ./env/bin/activate
 pip install --upgrade pip
 pip install -r ../requirements_tf.txt
+
+# Download widerface test set for quantization calibration
+gdown 1HIfDbVEWKmsYKJZm4lchTBDLW5N7dY5T -O WIDER_test.zip --no-check-certificate
+unzip WIDER_test.zip
+rm WIDER_test.zip
 
 # Generate tensorflow weights
 (
@@ -28,15 +28,8 @@ cd tf
 python3.8 convert_tensorflow.py --net_type slim
 )
 
-deactivate
-python3.9 -m venv env_tflite
-source ./env_tflite/bin/activate
-pip install --upgrade pip
-pip install "tensorflow==2.14.0"
-pip install opencv-python
-
 # Convert model to tflite
-python3.9 -c "
+python3.8 -c "
 import cv2, numpy as np, tensorflow as tf, glob, random
 random.seed(1337)
 
@@ -54,6 +47,7 @@ def representative_dataset():
     for filename in files[:NIMAGES_REPRESENTATIVE_DATASET]:
 
         image = cv2.imread(filename)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         image = cv2.resize(image, (128, 128))
         image = (image[None,...] - 127.0)/128.0
     
@@ -61,18 +55,18 @@ def representative_dataset():
 
 
 def main():
-    # converter = tf.lite.TFLiteConverter.from_saved_model(SAVE_MODEL_DIR)
-    # converter.optimizations = [tf.lite.Optimize.DEFAULT]
+    converter = tf.lite.TFLiteConverter.from_saved_model(SAVE_MODEL_DIR)
+    converter.optimizations = [tf.lite.Optimize.DEFAULT]
 
-    # converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]
+    converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]
 
-    # converter.representative_dataset = representative_dataset
+    converter.representative_dataset = representative_dataset
 
-    # converter.inference_input_type = tf.uint8 
-    # converter.inference_output_type = tf.float32 
+    converter.inference_input_type = tf.uint8 
+    converter.inference_output_type = tf.float32 
 
-    # tflite_model = converter.convert()
-    # open(OUTPUT_TF_FILE_NAME, 'wb').write(tflite_model)
+    tflite_model = converter.convert()
+    open(OUTPUT_TF_FILE_NAME, 'wb').write(tflite_model)
 
     converter = tf.lite.TFLiteConverter.from_saved_model(SAVE_MODEL_DIR)
     converter.optimizations = [tf.lite.Optimize.DEFAULT]

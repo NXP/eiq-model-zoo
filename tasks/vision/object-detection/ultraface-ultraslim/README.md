@@ -48,19 +48,11 @@ The conversion script performs this conversion and outputs the int8 quantized mo
 
 This model can be used for very fast face detection on 128x128 pixel images. Since the finest output level was removed, the model will not be able to detect very small faces.
 
-## Performance
-
-Here are performance figures evaluated on supported products:
-
-Model   | Average latency | Platform     | Accelerator | Command
----     | ---             | ---          | ---         | ---
-Int8    | 75ms            | MCX-N947     |   NPU       | Used with TFLite micro
-
 ## Download and run
 
-To create the TensorFlow Lite model fully quantized in int8 with int8 input and float32 output, run:
+To create the TensorFlow Lite model fully quantized in int8 with int8 input and float32 output, follow the top-level README instructions to install Docker and build the Docker image, then run the following command: 
 
-    bash recipe.sh
+    docker run --rm -v "$PWD:/workspace" nxp-model-zoo recipe.sh
 
 The generated TensorFlow Lite model file is `ultraface_ultraslim_int8.tflite`.
 
